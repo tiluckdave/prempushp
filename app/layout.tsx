@@ -24,9 +24,7 @@ const playfair = Playfair_Display({
 	display: "swap",
 });
 
-const baseUrl = process.env.VERCEL_URL
-	? `https://${process.env.VERCEL_URL}`
-	: "https://prempushp.in";
+const baseUrl = "https://prempushp.in";
 
 export const metadata: Metadata = {
 	title: PAGE_TITLES.home,

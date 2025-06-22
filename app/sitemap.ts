@@ -1,9 +1,7 @@
 import { MetadataRoute } from "next";
 import { getAllProducts, getAllCategories } from "./services/firebase";
 
-const baseUrl = process.env.VERCEL_URL
-	? `https://${process.env.VERCEL_URL}`
-	: "https://prempushp.in";
+const baseUrl =  "https://prempushp.in";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	try {

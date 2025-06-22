@@ -1,8 +1,6 @@
 import { MetadataRoute } from "next";
 
-const baseUrl = process.env.VERCEL_URL
-	? `https://${process.env.VERCEL_URL}`
-	: "https://prempushp.in";
+const baseUrl = "https://prempushp.in";
 
 export default function robots(): MetadataRoute.Robots {
 	return {

@@ -133,7 +133,7 @@ export default function Footer() {
 									<p className='text-white font-medium'>
 										PremPushp, M16, VHB Colony
 										<br />
-										Gaurakshan Road, near Gaurakshan Sansthan
+										Gaurakshan Road, Near Gaurakshan Sansthan
 										<br />
 										Akola, 444004, MH, IN
 									</p>

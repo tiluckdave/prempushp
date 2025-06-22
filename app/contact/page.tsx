@@ -263,7 +263,7 @@ export default function ContactPage() {
 												<p className='text-[#1B4D2A] font-semibold'>
 													PremPushp, M16, VHB Colony
 													<br />
-													Gaurakshan Road, near Gaurakshan Sansthan
+													Gaurakshan Road, Near Gaurakshan Sansthan
 													<br />
 													Akola, 444004, MH, IN
 												</p>
