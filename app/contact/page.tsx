@@ -240,7 +240,7 @@ export default function ContactPage() {
 													href='tel:+918275434017'
 													className='text-[#1B4D2A] font-semibold hover:text-[#FDB913] transition-colors duration-300'
 												>
-													+91 8275434017
+													+91 8275434017<br/>+91 9665494430 (Office)
 												</a>
 											</div>
 										</div>

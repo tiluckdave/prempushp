@@ -33,6 +33,28 @@ export default function ProductCard({ product }: ProductCardProps) {
 		window.open(`https://wa.me/+918275434017?text=${message}`, "_blank");
 	};
 
+	// SEO optimized alt text for product images
+	const getImageAlt = (product: Product, isMain: boolean = true) => {
+		const baseAlt = `${product.name} - Premium Organic ${product.category}`;
+		const details = [];
+
+		if (product.dietaryPreferences && product.dietaryPreferences.length > 0) {
+			details.push(product.dietaryPreferences.join(", "));
+		}
+
+		if (startingPrice) {
+			details.push(`Starting ₹${startingPrice}`);
+		}
+
+		details.push("Buy Online", "Prem Pushp");
+
+		return isMain ? `${baseAlt} | ${details.join(" | ")}` : baseAlt;
+	};
+
+	const productImageUrl =
+		product.coverImage || product.images?.[0] || "/placeholder.svg";
+	const optimizedAlt = getImageAlt(product);
+
 	return (
 		<div className='group bg-white rounded-2xl overflow-hidden transition-all duration-500 flex flex-col h-full border border-gray-200 hover:outline hover:outline-2 hover:outline-[#FDB913] relative z-10'>
 			<Link
@@ -40,10 +62,14 @@ export default function ProductCard({ product }: ProductCardProps) {
 				className='block relative aspect-[4/3] overflow-hidden'
 			>
 				<Image
-					src={product.coverImage || product.images?.[0] || "/placeholder.svg"}
-					alt={product.name}
+					src={productImageUrl}
+					alt={optimizedAlt}
 					fill
 					className='object-cover transition-transform duration-300'
+					sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw'
+					priority={false}
+					loading='lazy'
+					quality={85}
 				/>
 
 				{/* Category Badge - Made smaller */}
@@ -100,6 +126,48 @@ export default function ProductCard({ product }: ProductCardProps) {
 					)}
 				</div>
 			</div>
+
+			{/* Structured Data for Product */}
+			<script
+				type='application/ld+json'
+				dangerouslySetInnerHTML={{
+					__html: JSON.stringify({
+						"@context": "https://schema.org/",
+						"@type": "Product",
+						name: product.name,
+						image: productImageUrl,
+						description: product.shortDescription || product.description,
+						brand: {
+							"@type": "Brand",
+							name: "Prem Pushp",
+						},
+						category: product.category,
+						offers: startingPrice
+							? {
+									"@type": "Offer",
+									price: startingPrice,
+									priceCurrency: "INR",
+									availability: "https://schema.org/InStock",
+									url: `${
+										typeof window !== "undefined" ? window.location.origin : ""
+									}/products/${product.id}`,
+							  }
+							: undefined,
+						additionalProperty: [
+							{
+								"@type": "PropertyValue",
+								name: "Organic Certified",
+								value: "Yes",
+							},
+							...(product.dietaryPreferences?.map((diet) => ({
+								"@type": "PropertyValue",
+								name: "Dietary Preference",
+								value: diet,
+							})) || []),
+						],
+					}),
+				}}
+			/>
 		</div>
 	);
 }

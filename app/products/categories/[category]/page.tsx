@@ -14,31 +14,42 @@ const inter = Inter({ subsets: ["latin"] });
 export default function CategoryPage({
 	params,
 }: {
-	params: { category: string };
+	params: Promise<{ category: string }>;
 }) {
 	const [products, setProducts] = useState<Product[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [categoryName, setCategoryName] = useState("");
-
-	const categoryId = decodeURIComponent(params.category);
+	const [categoryId, setCategoryId] = useState("");
 
 	useEffect(() => {
 		async function fetchData() {
 			try {
 				setLoading(true);
+
+				// Resolve params for Next.js 15
+				const resolvedParams = await params;
+				const decodedCategoryId = decodeURIComponent(resolvedParams.category);
+				setCategoryId(decodedCategoryId);
+
 				console.log(
 					"Category page: Starting fetch for category ID:",
-					categoryId
+					decodedCategoryId
 				);
-				console.log("Category page: Raw params.category:", params.category);
+				console.log(
+					"Category page: Raw params.category:",
+					resolvedParams.category
+				);
 
 				// Get products and category name by category ID
-				const result = await getProductsByCategoryId(categoryId);
+				const result = await getProductsByCategoryId(decodedCategoryId);
 
 				console.log("Category page: getProductsByCategoryId result:", result);
 
 				if (!result) {
-					console.error("Category page: No category found for ID:", categoryId);
+					console.error(
+						"Category page: No category found for ID:",
+						decodedCategoryId
+					);
 					notFound();
 					return;
 				}
@@ -64,10 +75,8 @@ export default function CategoryPage({
 			}
 		}
 
-		if (categoryId) {
-			fetchData();
-		}
-	}, [categoryId, params.category]);
+		fetchData();
+	}, [params]);
 
 	if (loading) {
 		return (
@@ -79,7 +88,7 @@ export default function CategoryPage({
 						<div className='text-center'>
 							<div className='animate-spin rounded-full h-32 w-32 border-b-2 border-[#1B4D2A] mx-auto mb-4'></div>
 							<p className='text-[#1B4D2A] text-lg'>
-								Loading category products...
+								 loading...
 							</p>
 						</div>
 					</div>
@@ -100,7 +109,7 @@ export default function CategoryPage({
 							{ label: "Categories", href: "/products/categories" },
 							{
 								label: categoryName || "Category",
-								href: `/products/categories/${params.category}`,
+								href: `/products/categories/${categoryId}`,
 							},
 						]}
 					/>
@@ -134,7 +143,7 @@ export default function CategoryPage({
 							{ label: "Categories", href: "/products/categories" },
 							{
 								label: categoryName,
-								href: `/products/categories/${params.category}`,
+								href: `/products/categories/${categoryId}`,
 							},
 						]}
 					/>

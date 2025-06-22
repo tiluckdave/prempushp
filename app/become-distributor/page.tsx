@@ -8,17 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "react-hot-toast";
 import { Playfair_Display, Inter } from "next/font/google";
-import {
-	TrendingUp,
-	Users,
-	Award,
-	MapPin,
-	Phone,
-	Mail,
-	DollarSign,
-	Target,
-	CheckCircle,
-} from "lucide-react";
+import { TrendingUp, Users, Award, Target, CheckCircle } from "lucide-react";
 import { submitDistributorApplication } from "../services/firebase";
 
 const playfair = Playfair_Display({ subsets: ["latin"] });
@@ -27,6 +17,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function BecomeDistributorPage() {
 	const [formData, setFormData] = useState({
 		name: "",
+		firmName: "",
 		email: "",
 		phone: "",
 		city: "",
@@ -50,6 +41,7 @@ export default function BecomeDistributorPage() {
 			if (success) {
 				setFormData({
 					name: "",
+					firmName: "",
 					email: "",
 					phone: "",
 					city: "",
@@ -79,9 +71,9 @@ export default function BecomeDistributorPage() {
 		},
 		{
 			icon: Users,
-			title: "Marketing Support",
+			title: "Minimal Investment",
 			description:
-				"Get comprehensive marketing materials, training, and ongoing support from our experienced team.",
+				"Start with a minimal investment and grow your business with Prempushp Foods.",
 		},
 		{
 			icon: Award,
@@ -91,14 +83,14 @@ export default function BecomeDistributorPage() {
 		},
 		{
 			icon: Target,
-			title: "Growing Market",
+			title: "Advertisement Material",
 			description:
-				"Tap into the rapidly expanding organic food market with increasing health-conscious consumers.",
+				"We provide all the necessary marketing materials to help promote our products.",
 		},
 	];
 
 	const requirements = [
-		"Minimum investment capital of ₹2-5 lakhs",
+		"Minimum investment capital of ₹15-20 thousand",
 		"Dedicated storage space for inventory",
 		"Local market knowledge and connections",
 		"Commitment to brand values and quality",
@@ -244,6 +236,20 @@ export default function BecomeDistributorPage() {
 												name='name'
 												placeholder='Enter your full name'
 												value={formData.name}
+												onChange={handleChange}
+												required
+												className='h-12 border-2 border-gray-200 focus:ring-2 focus:ring-[#FDB913] focus:border-[#FDB913] rounded-xl text-base transition-all duration-300'
+											/>
+										</div>
+										<div>
+											<label className='block text-sm font-semibold text-gray-700 mb-2'>
+												Firm Name *
+											</label>
+											<Input
+												type='text'
+												name='firmName'
+												placeholder='Enter your firm/company name'
+												value={formData.firmName}
 												onChange={handleChange}
 												required
 												className='h-12 border-2 border-gray-200 focus:ring-2 focus:ring-[#FDB913] focus:border-[#FDB913] rounded-xl text-base transition-all duration-300'

@@ -2,7 +2,7 @@
 
 import type React from "react";
 import { createContext, useContext, useState } from "react";
-import type { Product } from "../data/products";
+import { Product } from "../types/firebase";
 
 interface SearchContextType {
 	searchQuery: string;

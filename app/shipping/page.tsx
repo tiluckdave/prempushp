@@ -156,9 +156,9 @@ export default function ShippingPage() {
 												<div className='text-xl font-bold text-[#1B4D2A] mb-2'>
 													Standard Shipping
 												</div>
-												<div className='text-gray-700'>₹50 flat rate</div>
+												<div className='text-gray-700'>₹50 minimum rate</div>
 												<div className='text-sm text-gray-600 mt-2'>
-													Orders under ₹1000
+													Vary as per location and quantity
 												</div>
 											</div>
 										</div>

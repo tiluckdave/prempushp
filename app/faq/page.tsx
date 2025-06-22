@@ -60,7 +60,7 @@ const faqs = [
 	{
 		question: "Do you offer bulk discounts?",
 		answer:
-			"Yes, we offer attractive bulk discounts for orders above certain quantities. Please contact our sales team for custom pricing on bulk orders. We also have special rates for distributors and retailers.",
+			"Yes, we offer attractive bulk discounts for orders above certain quantities. Please contact our sales team for custom pricing on bulk orders. We also have special rates for distributors, wholesalers and retailers.",
 		category: "Pricing",
 	},
 	{

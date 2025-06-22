@@ -37,7 +37,7 @@ export default function Header() {
 					<Link href='/' className='flex items-center group'>
 						<div className='relative'>
 							<Image
-								src='https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo%20(3)-FdE5Pc3CKVuxfH9G5KXQJSLcv5N4UP.png'
+								src='/logo.png'
 								alt='Prem Pushp Logo'
 								width={120}
 								height={60}

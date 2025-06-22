@@ -1,11 +1,137 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Playfair_Display, Inter } from "next/font/google";
 import { Leaf, Users, Award, Truck, Shield } from "lucide-react";
+import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+
+// Dynamically import PDFThumbnail to avoid SSR issues
+const PDFThumbnail = dynamic(() => import("./components/PDFThumbnail"), {
+	ssr: false,
+	loading: () => (
+		<div className='w-full h-full bg-gray-100 rounded-xl flex items-center justify-center'>
+			<div className='text-center text-gray-600'>
+				<div className='animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto mb-2'></div>
+				<p className='text-sm'>Loading...</p>
+			</div>
+		</div>
+	),
+});
 
 const playfair = Playfair_Display({ subsets: ["latin"] });
 const inter = Inter({ subsets: ["latin"] });
+
+// Licenses component that conditionally renders based on file existence
+function LicensesSection() {
+	const [availableLicenses, setAvailableLicenses] = useState<string[]>([]);
+
+	useEffect(() => {
+		// Check which license files exist
+		const checkLicenseFiles = async () => {
+			const licenses = ["fssai", "udyam", "gst"];
+			const available: string[] = [];
+
+			for (const license of licenses) {
+				try {
+					const response = await fetch(`/licenses/${license}.pdf`, {
+						method: "HEAD",
+					});
+					if (response.ok) {
+						available.push(license);
+					}
+				} catch (error) {
+					// File doesn't exist
+				}
+			}
+			setAvailableLicenses(available);
+		};
+
+		checkLicenseFiles();
+	}, []);
+
+	const licenseData = {
+		fssai: {
+			title: "Food License (FSSAI)",
+			description:
+				"Certified by Food Safety and Standards Authority of India, ensuring our products meet all food safety standards.",
+		},
+		udyam: {
+			title: "Udyam Registration",
+			description:
+				"Registered under the Ministry of MSME, Government of India, recognizing us as a legitimate business enterprise.",
+		},
+		gst: {
+			title: "GST Registration",
+			description:
+				"Goods and Services Tax registered business, ensuring transparent and compliant tax practices.",
+		},
+	};
+
+	// Don't render the section if no licenses are available
+	if (availableLicenses.length === 0) {
+		return null;
+	}
+
+	return (
+		<section className='py-12 sm:py-16 md:py-20 bg-gradient-to-br from-amber-50 via-amber-100 to-amber-200'>
+			<div className='container mx-auto px-4'>
+				<div className='max-w-6xl mx-auto'>
+					<div className='text-center mb-12 sm:mb-16'>
+						<h2
+							className={`${playfair.className} text-3xl sm:text-4xl md:text-5xl font-bold text-[#1B4D2A] mb-6`}
+						>
+							Licenses & Certifications
+						</h2>
+					</div>
+
+					<div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6'>
+						{availableLicenses.map((license) => (
+							<div
+								key={license}
+								className='group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#FDB913]/40 hover:-translate-y-1 overflow-hidden'
+							>
+								{/* A4 Ratio PDF Thumbnail (1:1.414) */}
+								<div
+									className='w-full relative overflow-hidden'
+									style={{ aspectRatio: "1/1.414" }}
+								>
+									<PDFThumbnail
+										src={`/licenses/${license}.pdf`}
+										alt={`${
+											licenseData[license as keyof typeof licenseData].title
+										} Certificate`}
+										className='w-full h-full'
+									/>
+									{/* Floating Button */}
+									<div className='absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center'>
+										<a
+											href={`/licenses/${license}.pdf`}
+											target='_blank'
+											rel='noopener noreferrer'
+											className='opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 bg-[#1B4D2A] text-white text-xs font-semibold px-3 py-2 rounded-lg shadow-lg hover:bg-[#1B4D2A]/90'
+										>
+											View Full
+										</a>
+									</div>
+								</div>
+								<div className='p-3'>
+									<h3
+										className={`${playfair.className} text-sm sm:text-base font-bold text-[#1B4D2A] text-center`}
+									>
+										{licenseData[license as keyof typeof licenseData].title}
+									</h3>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+		</section>
+	);
+}
 
 export default function AboutPage() {
 	return (
@@ -43,49 +169,32 @@ export default function AboutPage() {
 			{/* Our Story Section */}
 			<section className='py-12 sm:py-16 md:py-20'>
 				<div className='container mx-auto px-4'>
-					<div className='max-w-6xl mx-auto'>
-						<div className='grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center'>
-							<div className='order-2 lg:order-1'>
-								<h2
-									className={`${playfair.className} text-3xl sm:text-4xl md:text-5xl font-bold text-[#1B4D2A] mb-6 sm:mb-8`}
-								>
-									Our Story
-								</h2>
-								<div className='space-y-6 text-gray-700 text-base sm:text-lg leading-relaxed'>
-									<p>
-										Prem Pushp began as a small family-owned business in 2010
-										with a simple yet powerful vision: to make premium organic
-										food accessible to every family in India. What started in a
-										small village has grown into a trusted name across the
-										country.
-									</p>
-									<p>
-										We work directly with certified organic farms, ensuring that
-										every product meets our strict quality standards. Our
-										commitment goes beyond just selling products – we're
-										building a community of health-conscious families who
-										believe in the power of pure, organic nutrition.
-									</p>
-									<p>
-										Today, we're proud to serve thousands of families while
-										maintaining our core values of quality, sustainability, and
-										affordability. Every product tells a story of dedication,
-										from our farmers to your table.
-									</p>
-								</div>
-							</div>
-							<div className='order-1 lg:order-2'>
-								<div className='relative rounded-2xl overflow-hidden shadow-2xl'>
-									<Image
-										src='/banner.png'
-										alt='Prem Pushp Organic Farm'
-										width={600}
-										height={400}
-										className='object-cover w-full h-[300px] sm:h-[400px]'
-									/>
-									<div className='absolute inset-0 bg-gradient-to-t from-black/20 to-transparent'></div>
-								</div>
-							</div>
+					<div className='max-w-4xl mx-auto text-center'>
+						<h2
+							className={`${playfair.className} text-3xl sm:text-4xl md:text-5xl font-bold text-[#1B4D2A] mb-6 sm:mb-8`}
+						>
+							Our Story
+						</h2>
+						<div className='space-y-6 text-gray-700 text-base sm:text-lg leading-relaxed'>
+							<p>
+								Prem Pushp began as a small family-owned business in 2020 with a
+								simple yet powerful vision: to make premium organic food
+								accessible to every family in India. What started in a small
+								village has grown into a trusted name across the country.
+							</p>
+							<p>
+								We work directly with certified organic farms, ensuring that
+								every product meets our strict quality standards. Our commitment
+								goes beyond just selling products – we're building a community
+								of health-conscious families who believe in the power of pure,
+								organic nutrition.
+							</p>
+							<p>
+								Today, we're proud to serve thousands of families while
+								maintaining our core values of quality, sustainability, and
+								affordability. Every product tells a story of dedication, from
+								our farmers to your table.
+							</p>
 						</div>
 					</div>
 				</div>
@@ -99,19 +208,19 @@ export default function AboutPage() {
 							<h2
 								className={`${playfair.className} text-3xl sm:text-4xl md:text-5xl font-bold text-[#1B4D2A] mb-6`}
 							>
-								Our Team
+								Leadership
 							</h2>
 							<p className='text-gray-600 text-lg sm:text-xl max-w-3xl mx-auto'>
-								A father-son duo leading the charge toward a healthier,
-								sustainable future.
+								Meet our proprietor who is leading the charge toward a
+								healthier, sustainable future.
 							</p>
 						</div>
-						<div className='grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12'>
-							{/* Atharva Dave */}
-							<div className='flex flex-col items-center text-center bg-white rounded-2xl shadow-lg p-6 sm:p-8 border border-gray-100'>
+						<div className='flex justify-center'>
+							{/* Astharva Datya */}
+							<div className='flex flex-col items-center text-center bg-white rounded-2xl shadow-lg p-6 sm:p-8 border border-gray-100 max-w-md'>
 								<Image
-									src='/team/atharva.jpg'
-									alt='Atharva Dave'
+									src='/atharv_dave.png'
+									alt='Atharv Dave'
 									width={240}
 									height={240}
 									className='rounded-full object-cover mb-6 w-40 h-40'
@@ -119,34 +228,13 @@ export default function AboutPage() {
 								<h3
 									className={`${playfair.className} text-xl sm:text-2xl font-bold text-[#1B4D2A] mb-2`}
 								>
-									Atharva Dave
+									Atharv Dave
 								</h3>
-								<p className='text-gray-600 mb-4'>Co-Founder & CEO</p>
+								<p className='text-gray-600 mb-4'>Proprietor</p>
 								<p className='text-gray-600 text-sm leading-relaxed'>
-									Passionate about organic agriculture and innovative product
-									development, Atharva drives our vision of making healthy
-									living accessible.
-								</p>
-							</div>
-
-							{/* Rajendra Dave */}
-							<div className='flex flex-col items-center text-center bg-white rounded-2xl shadow-lg p-6 sm:p-8 border border-gray-100'>
-								<Image
-									src='/team/rajendra.jpg'
-									alt='Rajendra Dave'
-									width={240}
-									height={240}
-									className='rounded-full object-cover mb-6 w-40 h-40'
-								/>
-								<h3
-									className={`${playfair.className} text-xl sm:text-2xl font-bold text-[#1B4D2A] mb-2`}
-								>
-									Rajendra Dave
-								</h3>
-								<p className='text-gray-600 mb-4'>Co-Founder & Mentor</p>
-								<p className='text-gray-600 text-sm leading-relaxed'>
-									With decades of farming expertise, Rajendra ensures that our
-									products stay true to nature and tradition.
+									A passionate young entrepreneur with a keen interest in
+									business and food products, Atharv drives our vision of making
+									healthy living accessible to every family across India.
 								</p>
 							</div>
 						</div>
@@ -264,6 +352,9 @@ export default function AboutPage() {
 					</div>
 				</div>
 			</section>
+
+			{/* Licenses & Certifications Section */}
+			<LicensesSection />
 
 			{/* CTA Section */}
 			<section className='py-12 sm:py-16 md:py-20'>

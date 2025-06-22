@@ -41,6 +41,38 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
 					</li>
 				))}
 			</ol>
+
+			{/* Structured Data for Breadcrumbs */}
+			<script
+				type='application/ld+json'
+				dangerouslySetInnerHTML={{
+					__html: JSON.stringify({
+						"@context": "https://schema.org",
+						"@type": "BreadcrumbList",
+						itemListElement: [
+							{
+								"@type": "ListItem",
+								position: 1,
+								name: "Home",
+								item:
+									typeof window !== "undefined" ? window.location.origin : "",
+							},
+							...items.map((item, index) => ({
+								"@type": "ListItem",
+								position: index + 2,
+								name: item.label,
+								item: item.href.startsWith("http")
+									? item.href
+									: `${
+											typeof window !== "undefined"
+												? window.location.origin
+												: ""
+									  }${item.href}`,
+							})),
+						],
+					}),
+				}}
+			/>
 		</nav>
 	);
 }
