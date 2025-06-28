@@ -37,12 +37,17 @@ async function ensureDoc(ref: any, defaultData: Record<string, any>) {
 }
 
 function todayISODate(): string {
-	// Get current date in IST (UTC+5:30)
-	const now = new Date();
-	const utc = now.getTime() + now.getTimezoneOffset() * 60000;
-	const istOffset = 5.5 * 60 * 60000; // 5.5 hours in milliseconds
-	const istDate = new Date(utc + istOffset);
-	return istDate.toISOString().split("T")[0]; // YYYY-MM-DD
+	// Create date in IST using explicit timezone
+	const date = new Date().toLocaleString('en-US', { 
+		timeZone: 'Asia/Kolkata',
+		year: 'numeric',
+		month: '2-digit',
+		day: '2-digit'
+	});
+	
+	// Convert MM/DD/YYYY to YYYY-MM-DD
+	const [month, day, year] = date.split('/');
+	return `${year}-${month}-${day}`;
 }
 
 // ---------------------------------------------------------------------------
