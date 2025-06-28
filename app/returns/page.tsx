@@ -24,7 +24,7 @@ export default function ReturnsPage() {
 									Our Guarantee
 								</h2>
 								<p className='text-gray-700'>
-									At Prem Pushp, we stand behind the quality of our products. If
+									At Prempushp, we stand behind the quality of our products. If
 									you're not completely satisfied with your purchase, we're here
 									to help.
 								</p>

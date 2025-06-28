@@ -30,7 +30,7 @@ export default function Footer() {
 							<h3
 								className={`${playfair.className} text-2xl md:text-3xl font-bold text-[#FDB913]`}
 							>
-								Prem Pushp
+								Prempushp
 							</h3>
 						</div>
 						<p className='text-white/90 mb-8 leading-relaxed text-base md:text-lg max-w-md'>
@@ -148,7 +148,7 @@ export default function Footer() {
 					<div className='flex flex-col md:flex-row justify-between items-center gap-4'>
 						<div className='text-center md:text-left'>
 							<p className='text-white/80 text-sm'>
-								&copy; {new Date().getFullYear()} Prem Pushp. All rights
+								&copy; {new Date().getFullYear()} Prempushp. All rights
 								reserved.
 							</p>
 							<p className='text-white/60 text-xs mt-1'>

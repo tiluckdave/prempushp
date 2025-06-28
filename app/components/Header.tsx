@@ -38,7 +38,7 @@ export default function Header() {
 						<div className='relative'>
 							<Image
 								src='/logo.png'
-								alt='Prem Pushp Logo'
+								alt='Prempushp Logo'
 								width={120}
 								height={60}
 								className='h-10 md:h-12 w-auto transition-all duration-300 group-hover:scale-105 group-hover:brightness-110'

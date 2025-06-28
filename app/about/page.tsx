@@ -154,13 +154,13 @@ export default function AboutPage() {
 						<h1
 							className={`${playfair.className} text-4xl sm:text-5xl md:text-6xl font-bold text-[#1B4D2A] mb-6 leading-tight`}
 						>
-							About Prem Pushp
+							About Prempushp
 						</h1>
 
 						{/* Subtitle */}
 						<p className='text-lg sm:text-xl text-gray-700 mb-10 leading-relaxed max-w-3xl mx-auto'>
 							Bringing you the finest organic food products with a commitment to
-							quality, sustainability, and your family's health since 2010.
+							quality, sustainability, and your family's health since 2020.
 						</p>
 					</div>
 				</div>
@@ -177,7 +177,7 @@ export default function AboutPage() {
 						</h2>
 						<div className='space-y-6 text-gray-700 text-base sm:text-lg leading-relaxed'>
 							<p>
-								Prem Pushp began as a small family-owned business in 2020 with a
+								Prempushp began as a small family-owned business in 2020 with a
 								simple yet powerful vision: to make premium organic food
 								accessible to every family in India. What started in a small
 								village has grown into a trusted name across the country.
@@ -364,7 +364,7 @@ export default function AboutPage() {
 							<h2
 								className={`${playfair.className} text-3xl sm:text-4xl md:text-5xl font-bold text-[#1B4D2A] mb-6 sm:mb-8`}
 							>
-								Join the Prem Pushp Family
+								Join the Prempushp Family
 							</h2>
 							<p className='text-gray-800 mb-8 sm:mb-12 max-w-2xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed'>
 								Experience the difference of truly organic, sustainably sourced

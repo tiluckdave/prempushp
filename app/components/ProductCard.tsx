@@ -46,7 +46,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 			details.push(`Starting ₹${startingPrice}`);
 		}
 
-		details.push("Buy Online", "Prem Pushp");
+		details.push("Buy Online", "Prempushp");
 
 		return isMain ? `${baseAlt} | ${details.join(" | ")}` : baseAlt;
 	};
@@ -139,7 +139,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 						description: product.shortDescription || product.description,
 						brand: {
 							"@type": "Brand",
-							name: "Prem Pushp",
+							name: "Prempushp",
 						},
 						category: product.category,
 						offers: startingPrice

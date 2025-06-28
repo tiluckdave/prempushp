@@ -71,7 +71,7 @@ export default function Home() {
 	const websiteSchema = {
 		"@context": "https://schema.org",
 		"@type": "WebSite",
-		name: "Prem Pushp - Premium Organic Food Products",
+		name: "Prempushp - Premium Organic Food Products",
 		alternateName: "Prempushp Food Products",
 		url: baseUrl,
 		description:
@@ -86,7 +86,7 @@ export default function Home() {
 		},
 		publisher: {
 			"@type": "Organization",
-			name: "Prem Pushp",
+			name: "Prempushp",
 			logo: `${baseUrl}/logo.png`,
 		},
 	};
@@ -94,7 +94,7 @@ export default function Home() {
 	const organizationSchema = {
 		"@context": "https://schema.org",
 		"@type": "Organization",
-		name: "Prem Pushp",
+		name: "Prempushp",
 		alternateName: "Prempushp Food Products",
 		url: baseUrl,
 		logo: `${baseUrl}/logo.png`,
@@ -129,7 +129,7 @@ export default function Home() {
 							image: product.coverImage || product.images?.[0],
 							brand: {
 								"@type": "Brand",
-								name: "Prem Pushp",
+								name: "Prempushp",
 							},
 						},
 					})),
@@ -144,7 +144,7 @@ export default function Home() {
 		mainEntity: [
 			{
 				"@type": "Question",
-				name: "Are Prem Pushp products certified organic?",
+				name: "Are Prempushp products certified organic?",
 				acceptedAnswer: {
 					"@type": "Answer",
 					text: "Yes, all our products are certified organic, sustainably sourced, and free from chemicals, preservatives, and artificial additives.",
@@ -152,7 +152,7 @@ export default function Home() {
 			},
 			{
 				"@type": "Question",
-				name: "What types of organic food products does Prem Pushp offer?",
+				name: "What types of organic food products does Prempushp offer?",
 				acceptedAnswer: {
 					"@type": "Answer",
 					text: `We offer a wide range of premium organic food products including ${categories
@@ -162,7 +162,7 @@ export default function Home() {
 			},
 			{
 				"@type": "Question",
-				name: "How can I become a distributor for Prem Pushp products?",
+				name: "How can I become a distributor for Prempushp products?",
 				acceptedAnswer: {
 					"@type": "Answer",
 					text: "You can join our distributor network by visiting our become-distributor page or contacting us directly. We offer attractive margins and support for our distribution partners.",

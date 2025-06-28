@@ -59,12 +59,11 @@ export default function TermsAndConditionsPage() {
 						{/* Introduction */}
 						<div className='bg-white rounded-2xl shadow-xl border border-gray-100 p-6 sm:p-8 md:p-10'>
 							<p className='text-gray-700 text-base sm:text-lg leading-relaxed'>
-								Welcome to Prem Pushp. These terms and conditions outline the
+								Welcome to Prempushp. These terms and conditions outline the
 								rules and regulations for the use of our website and services.
 								By accessing this website, we assume you accept these terms and
-								conditions. Do not continue to use Prem Pushp if you do not
-								agree to take all of the terms and conditions stated on this
-								page.
+								conditions. Do not continue to use Prempushp if you do not agree
+								to take all of the terms and conditions stated on this page.
 							</p>
 						</div>
 
@@ -121,7 +120,7 @@ export default function TermsAndConditionsPage() {
 									<div className='space-y-4 text-gray-700 text-base sm:text-lg leading-relaxed'>
 										<p>
 											Permission is granted to temporarily download one copy of
-											the materials on Prem Pushp's website for personal,
+											the materials on Prempushp's website for personal,
 											non-commercial transitory viewing only. This is the grant
 											of a license, not a transfer of title, and under this
 											license you may not:
@@ -234,9 +233,9 @@ export default function TermsAndConditionsPage() {
 									</h2>
 									<div className='space-y-4 text-gray-700 text-base sm:text-lg leading-relaxed'>
 										<p>
-											The materials on Prem Pushp's website are provided on an
-											'as is' basis. Prem Pushp makes no warranties, expressed
-											or implied, and hereby disclaims and negates all other
+											The materials on Prempushp's website are provided on an
+											'as is' basis. Prempushp makes no warranties, expressed or
+											implied, and hereby disclaims and negates all other
 											warranties including:
 										</p>
 										<ul className='list-disc pl-6 space-y-2'>
@@ -248,7 +247,7 @@ export default function TermsAndConditionsPage() {
 											<li>Other violation of rights</li>
 										</ul>
 										<p>
-											Further, Prem Pushp does not warrant or make any
+											Further, Prempushp does not warrant or make any
 											representations concerning the accuracy, likely results,
 											or reliability of the use of the materials on its website.
 										</p>
@@ -271,8 +270,8 @@ export default function TermsAndConditionsPage() {
 									</h2>
 									<div className='space-y-4 text-gray-700 text-base sm:text-lg leading-relaxed'>
 										<p>
-											In no event shall Prem Pushp or its suppliers be liable
-											for any damages including:
+											In no event shall Prempushp or its suppliers be liable for
+											any damages including:
 										</p>
 										<ul className='list-disc pl-6 space-y-2'>
 											<li>Loss of data or profit</li>
@@ -281,9 +280,9 @@ export default function TermsAndConditionsPage() {
 											<li>Any other commercial damages or losses</li>
 										</ul>
 										<p>
-											This limitation applies even if Prem Pushp or an
-											authorized representative has been notified orally or in
-											writing of the possibility of such damage.
+											This limitation applies even if Prempushp or an authorized
+											representative has been notified orally or in writing of
+											the possibility of such damage.
 										</p>
 									</div>
 								</div>
@@ -320,14 +319,14 @@ export default function TermsAndConditionsPage() {
 							</h2>
 							<div className='space-y-4 text-gray-700 text-base sm:text-lg leading-relaxed'>
 								<p>
-									The materials appearing on Prem Pushp's website could include
-									technical, typographical, or photographic errors. Prem Pushp
+									The materials appearing on Prempushp's website could include
+									technical, typographical, or photographic errors. Prempushp
 									does not warrant that any of the materials on its website are
 									accurate, complete, or current.
 								</p>
 								<p>
-									Prem Pushp may make changes to the materials contained on its
-									website at any time without notice. However, Prem Pushp does
+									Prempushp may make changes to the materials contained on its
+									website at any time without notice. However, Prempushp does
 									not make any commitment to update the materials.
 								</p>
 							</div>

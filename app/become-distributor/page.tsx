@@ -139,7 +139,7 @@ export default function BecomeDistributorPage() {
 								Why Partner With Us?
 							</h2>
 							<p className='text-gray-600 text-lg sm:text-xl max-w-3xl mx-auto'>
-								Discover the advantages of becoming a Prem Pushp distributor and
+								Discover the advantages of becoming a Prempushp distributor and
 								how we support your business growth.
 							</p>
 						</div>

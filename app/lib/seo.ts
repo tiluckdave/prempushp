@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-const baseUrl =  "https://prempushp.in";
+const baseUrl = "https://prempushp.in";
 
 export interface SEOPageData {
 	title: string;
@@ -159,7 +159,7 @@ export function generateMetaTags(data: SEOPageData) {
 			type: data.ogType || "website",
 			url: data.canonicalUrl,
 			images: data.ogImage ? [{ url: data.ogImage }] : undefined,
-			siteName: "Prem Pushp - Premium Organic Food Products",
+			siteName: "Prempushp - Premium Organic Food Products",
 		},
 		twitter: {
 			card: "summary_large_image",
@@ -268,7 +268,7 @@ export function generateOrganizationSchema(baseUrl: string) {
 	return {
 		"@context": "https://schema.org",
 		"@type": "Organization",
-		name: "Prem Pushp",
+		name: "Prempushp",
 		alternateName: "Prempushp Food Products",
 		url: baseUrl,
 		logo: `${baseUrl}/logo.png`,
@@ -328,7 +328,7 @@ export function generateWebsiteSchema(baseUrl: string) {
 	return {
 		"@context": "https://schema.org",
 		"@type": "WebSite",
-		name: "Prem Pushp - Premium Organic Food Products",
+		name: "Prempushp - Premium Organic Food Products",
 		alternateName: "Prempushp Food Products",
 		url: baseUrl,
 		description:
@@ -343,7 +343,7 @@ export function generateWebsiteSchema(baseUrl: string) {
 		},
 		publisher: {
 			"@type": "Organization",
-			name: "Prem Pushp",
+			name: "Prempushp",
 			logo: `${baseUrl}/logo.png`,
 		},
 	};
@@ -351,23 +351,23 @@ export function generateWebsiteSchema(baseUrl: string) {
 
 // Common meta descriptions for different page types
 export const META_DESCRIPTIONS = {
-	home: "Discover premium organic food products at Prem Pushp. Certified organic, sustainably sourced, and delivered fresh from our farms to your family. Shop now!",
+	home: "Discover premium organic food products at Prempushp. Certified organic, sustainably sourced, and delivered fresh from our farms to your family. Shop now!",
 	products:
 		"Browse our complete range of premium organic food products. From spices to grains, pulses to oils - all certified organic and sustainably sourced.",
 	about:
-		"Learn about Prem Pushp's commitment to providing premium organic food products. Our story of sustainable farming and quality assurance.",
+		"Learn about Prempushp's commitment to providing premium organic food products. Our story of sustainable farming and quality assurance.",
 	contact:
-		"Get in touch with Prem Pushp for premium organic food products. Contact us for bulk orders, distribution opportunities, or any queries.",
+		"Get in touch with Prempushp for premium organic food products. Contact us for bulk orders, distribution opportunities, or any queries.",
 	distributor:
-		"Join Prem Pushp's distributor network and build a profitable business with premium organic food products. Learn about partnership opportunities.",
+		"Join Prempushp's distributor network and build a profitable business with premium organic food products. Learn about partnership opportunities.",
 };
 
 // Page titles for different sections
 export const PAGE_TITLES = {
-	home: "Prem Pushp - Premium Organic Food Products | Buy Online | Certified Organic",
-	products: "Organic Food Products | Premium Quality | Buy Online - Prem Pushp",
-	about: "About Prem Pushp - Premium Organic Food Products | Our Story",
-	contact: "Contact Prem Pushp - Premium Organic Food Products | Get in Touch",
+	home: "Prempushp - Premium Organic Food Products | Buy Online | Certified Organic",
+	products: "Organic Food Products | Premium Quality | Buy Online - Prempushp",
+	about: "About Prempushp - Premium Organic Food Products | Our Story",
+	contact: "Contact Prempushp - Premium Organic Food Products | Get in Touch",
 	distributor:
-		"Become a Distributor - Prem Pushp Organic Foods | Partnership Opportunities",
+		"Become a Distributor - Prempushp Organic Foods | Partnership Opportunities",
 };

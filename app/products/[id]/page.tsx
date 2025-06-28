@@ -22,7 +22,7 @@ export async function generateMetadata({
 
 		if (!product) {
 			return {
-				title: "Product Not Found - Prem Pushp",
+				title: "Product Not Found - Prempushp",
 				description:
 					"The requested product was not found. Browse our other premium organic food products.",
 			};
@@ -44,7 +44,7 @@ export async function generateMetadata({
 			price: product.sizes?.[0]?.mrp || 0,
 			priceCurrency: "INR",
 			availability: "InStock",
-			brand: "Prem Pushp",
+			brand: "Prempushp",
 			sku: product.id,
 			ingredients: product.ingredients,
 			nutritionInfo: product.nutritionalInfo,
@@ -58,7 +58,7 @@ export async function generateMetadata({
 			product.coverImage || product.images?.[0] || `${baseUrl}/og-image.jpg`;
 
 		// Create optimized title for SEO
-		const seoTitle = `${product.name} - Premium Organic ${product.category} | Buy Online - Prem Pushp`;
+		const seoTitle = `${product.name} - Premium Organic ${product.category} | Buy Online - Prempushp`;
 		const seoDescription = `Buy premium organic ${product.name.toLowerCase()} online. ${
 			product.shortDescription ||
 			product.description ||
@@ -77,9 +77,9 @@ export async function generateMetadata({
 			title: seoTitle,
 			description: seoDescription,
 			keywords: keywords.join(", "),
-			authors: [{ name: "Prem Pushp" }],
-			creator: "Prem Pushp",
-			publisher: "Prem Pushp",
+			authors: [{ name: "Prempushp" }],
+			creator: "Prempushp",
+			publisher: "Prempushp",
 			category: "food",
 			openGraph: {
 				title: seoTitle,
@@ -100,7 +100,7 @@ export async function generateMetadata({
 						alt: `${product.name} - Image ${index + 2}`,
 					})) || []),
 				],
-				siteName: "Prem Pushp - Premium Organic Food Products",
+				siteName: "Prempushp - Premium Organic Food Products",
 			},
 			twitter: {
 				card: "summary_large_image",
@@ -136,7 +136,7 @@ export async function generateMetadata({
 	} catch (error) {
 		console.error("Error generating metadata:", error);
 		return {
-			title: "Product - Prem Pushp",
+			title: "Product - Prempushp",
 			description:
 				"Premium organic food products - certified organic, sustainably sourced.",
 		};
@@ -179,7 +179,7 @@ export default async function ProductPage({
 			price: product.sizes?.[0]?.mrp || 0,
 			priceCurrency: "INR",
 			availability: "InStock",
-			brand: "Prem Pushp",
+			brand: "Prempushp",
 			sku: product.id,
 			ingredients: product.ingredients,
 			nutritionInfo: product.nutritionalInfo,

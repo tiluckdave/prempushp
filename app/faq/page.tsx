@@ -9,9 +9,9 @@ const inter = Inter({ subsets: ["latin"] });
 
 const faqs = [
 	{
-		question: "What makes Prem Pushp products organic?",
+		question: "What makes Prempushp products organic?",
 		answer:
-			"All Prem Pushp products are certified organic, meaning they are grown without the use of synthetic pesticides, herbicides, or fertilizers. Our farmers follow strict organic farming practices, and our products are regularly tested to ensure they meet organic standards.",
+			"All Prempushp products are certified organic, meaning they are grown without the use of synthetic pesticides, herbicides, or fertilizers. Our farmers follow strict organic farming practices, and our products are regularly tested to ensure they meet organic standards.",
 		category: "Quality",
 	},
 	{
