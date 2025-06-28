@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Breadcrumb from "../../components/Breadcrumb";
-import ProductCard from "../../components/ProductCard";
 import ProductSlider from "../../components/ProductSlider";
 import { Button } from "@/components/ui/button";
 import type { Product } from "../../types/firebase";
@@ -13,7 +12,6 @@ import {
 	Leaf,
 	Award,
 	Shield,
-	Truck,
 	Share2,
 	MessageCircle,
 	FileText,
@@ -21,6 +19,11 @@ import {
 	BarChart,
 	Box,
 } from "lucide-react";
+import {
+	trackProductView,
+	trackProductEnquiry,
+	trackTraffic,
+} from "../../lib/analytics";
 
 const playfair = Playfair_Display({ subsets: ["latin"] });
 const inter = Inter({ subsets: ["latin"] });
@@ -58,6 +61,23 @@ export default function ProductPageClient({
 		fetchCategoryId();
 	}, [product.category]);
 
+	useEffect(() => {
+		// Track product view and traffic
+		const key = `prempushp_product_${product.id}`;
+		const isUnique =
+			typeof window !== "undefined" && !localStorage.getItem(key);
+		if (isUnique && typeof window !== "undefined") {
+			localStorage.setItem(key, "1");
+		}
+		trackProductView(
+			product.id,
+			product.name,
+			product.category,
+			isUnique
+		).catch(console.error);
+		trackTraffic({ productView: true }).catch(console.error);
+	}, [product]);
+
 	const productUrl = typeof window !== "undefined" ? window.location.href : "";
 	const whatsappMessage = encodeURIComponent(
 		`Hi, I'm interested in ${product.name}. Here is the product link: ${productUrl}`
@@ -84,6 +104,11 @@ export default function ProductPageClient({
 				console.log("Error copying to clipboard:", error);
 			}
 		}
+	};
+
+	const handleEnquireClick = () => {
+		trackProductEnquiry(product.id).catch(console.error);
+		window.open(whatsappLink, "_blank");
 	};
 
 	return (
@@ -235,7 +260,7 @@ export default function ProductPageClient({
 								<Button
 									size='lg'
 									className='bg-gradient-to-r from-[#1B4D2A] to-[#2a6b3f] hover:from-[#1B4D2A]/90 hover:to-[#2a6b3f]/90 text-white font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-3 w-full justify-center text-lg'
-									onClick={() => window.open(whatsappLink, "_blank")}
+									onClick={handleEnquireClick}
 								>
 									<MessageCircle className='w-6 h-6' />
 									Enquire on WhatsApp

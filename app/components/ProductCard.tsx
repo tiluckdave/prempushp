@@ -5,6 +5,7 @@ import Link from "next/link";
 import type { Product } from "../types/firebase";
 import { Button } from "@/components/ui/button";
 import { Playfair_Display } from "next/font/google";
+import { trackProductEnquiry } from "../lib/analytics";
 
 const playfair = Playfair_Display({ subsets: ["latin"] });
 
@@ -25,6 +26,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 			: null;
 
 	const handleEnquire = () => {
+		trackProductEnquiry(product.id).catch(console.error);
 		if (typeof window === "undefined") return;
 		const productUrl = `${window.location.origin}/products/${product.id}`;
 		const message = encodeURIComponent(

@@ -12,6 +12,7 @@ import {
 	PAGE_TITLES,
 	META_DESCRIPTIONS,
 } from "./lib/seo";
+import AnalyticsTracker from "./components/AnalyticsTracker";
 
 const inter = Inter({
 	subsets: ["latin"],
@@ -147,6 +148,7 @@ export default function RootLayout({
 			</head>
 			<body className='min-h-screen flex flex-col text-gray-900'>
 				<SearchProvider>
+					<AnalyticsTracker />
 					<Header />
 					<main className='flex-auto pt-[72px]'>{children}</main>
 					<Footer />
