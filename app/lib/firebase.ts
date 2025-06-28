@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getAnalytics, Analytics } from "firebase/analytics";
 
 const firebaseConfig = {
 	apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -12,6 +13,20 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+// Initialize Analytics only on client-side
+let analytics: Analytics | null = null;
+
+if (typeof window !== "undefined") {
+	try {
+		analytics = getAnalytics(app);
+	} catch (error) {
+		console.log("Analytics could not be initialized:", error);
+		analytics = null;
+	}
+}
+
+export { analytics };
 
 // Initialize Firestore
 export const db = getFirestore(app);

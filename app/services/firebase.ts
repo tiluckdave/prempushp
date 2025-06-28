@@ -247,6 +247,7 @@ export async function submitDistributorApplication(
 		const applicationsCollection = collection(db, "DistributorResponse");
 		await addDoc(applicationsCollection, {
 			name: application.name,
+			firmName: application.firmName,
 			email: application.email,
 			phone: application.phone,
 			capital: application.investmentCapital || application.capital || "",
