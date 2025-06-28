@@ -37,7 +37,12 @@ async function ensureDoc(ref: any, defaultData: Record<string, any>) {
 }
 
 function todayISODate(): string {
-	return new Date().toISOString().split("T")[0]; // YYYY-MM-DD
+	// Get current date in IST (UTC+5:30)
+	const now = new Date();
+	const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+	const istOffset = 5.5 * 60 * 60000; // 5.5 hours in milliseconds
+	const istDate = new Date(utc + istOffset);
+	return istDate.toISOString().split("T")[0]; // YYYY-MM-DD
 }
 
 // ---------------------------------------------------------------------------
