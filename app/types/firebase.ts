@@ -39,6 +39,8 @@ export interface FirebaseProduct {
 	images: string[];
 	createdAt: Timestamp;
 	updatedAt: Timestamp;
+	published: boolean;
+	isNew: boolean;
 }
 
 // Converted types for use in components (matching existing Product interface)
@@ -63,6 +65,8 @@ export interface Product {
 	featured?: boolean;
 	images?: string[];
 	coverImage?: string;
+	published?: boolean;
+	isNew?: boolean;
 }
 
 export interface Category {

@@ -58,10 +58,10 @@ export default function ProductCard({ product }: ProductCardProps) {
 	const optimizedAlt = getImageAlt(product);
 
 	return (
-		<div className='group bg-white rounded-2xl overflow-hidden transition-all duration-500 flex flex-col h-full border border-gray-200 hover:outline hover:outline-2 hover:outline-[#FDB913] relative z-10'>
+		<div className='group bg-white rounded-2xl overflow-hidden transition-all duration-500 flex flex-col h-full border border-gray-200 relative z-10'>
 			<Link
 				href={`/products/${product.id}`}
-				className='block relative aspect-[4/3] overflow-hidden'
+				className='block relative aspect-[3/4] overflow-hidden'
 			>
 				<Image
 					src={productImageUrl}
@@ -74,13 +74,23 @@ export default function ProductCard({ product }: ProductCardProps) {
 					quality={85}
 				/>
 
-				{/* Category Badge - Made smaller */}
-				<div className='absolute top-3 left-3 bg-gradient-to-r from-[#FDB913] to-[#ffdf8d] text-[#1B4D2A] px-3 py-1 rounded-full text-xs font-bold border border-white/50 backdrop-blur-sm'>
-					{product.category}
+				{/* Badges Container - Top Left */}
+				<div className='absolute top-3 left-3 flex flex-row gap-2'>
+					{/* New Badge */}
+					{product.isNew && (
+						<div className='bg-gradient-to-r from-[#1B4D2A] to-[#2a6b3f] text-white px-3 py-1 rounded-full text-xs font-bold border border-white/50 backdrop-blur-sm'>
+							<span className='relative z-10'>NEW</span>
+						</div>
+					)}
+
+					{/* Category Badge */}
+					<div className='bg-gradient-to-r from-[#FDB913] to-[#ffdf8d] text-[#1B4D2A] px-3 py-1 rounded-full text-xs font-bold border-2 border-[#FDB913]/50 backdrop-blur-sm'>
+						{product.category}
+					</div>
 				</div>
 			</Link>
 
-			<div className='p-5 sm:p-6 flex-grow flex flex-col justify-between'>
+			<div className='p-3 sm:p-4 flex-grow flex flex-col justify-between'>
 				<div className='space-y-3'>
 					<Link href={`/products/${product.id}`}>
 						<h3
@@ -93,7 +103,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 					</Link>
 
 					{/* Description with exactly 2 lines and consistent height */}
-					<div className='h-[3rem]'>
+					<div>
 						{" "}
 						{/* Fixed height for 2 lines */}
 						<p className='text-sm text-gray-600 line-clamp-2 leading-relaxed'>
@@ -104,7 +114,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 					</div>
 				</div>
 
-				<div className='mt-4 pt-4 border-t border-gray-100'>
+				<div className='mt-3 pt-3 border-t border-gray-100'>
 					{startingPrice !== null && (
 						<div className='flex items-center justify-between'>
 							<div>

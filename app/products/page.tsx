@@ -236,26 +236,21 @@ export default function ProductsPage() {
 				{/* Products Grid Section */}
 				<section id='products-grid' className='py-8 sm:py-12 md:py-16'>
 					<div className='container mx-auto px-4'>
-						<div className='max-w-7xl mx-auto'>
-							{/* Results Header */}
-							<div className='mb-6 sm:mb-8 text-center'>
-								<h3
-									className={`${playfair.className} text-2xl sm:text-3xl font-bold text-[#1B4D2A] mb-4`}
-								>
-									{selectedCategory
-										? `${selectedCategory} Products`
-										: "All Products"}
-								</h3>
-								<p className='text-gray-600 text-base sm:text-lg'>
-									Showing {filteredProducts.length}{" "}
-									{filteredProducts.length === 1 ? "product" : "products"}
-									{selectedCategory && ` in ${selectedCategory}`}
-								</p>
-							</div>
-
-							{/* Products Grid */}
-							<ProductGrid products={filteredProducts} />
+						<div className='mb-6 sm:mb-8 text-center'>
+							<h3
+								className={`${playfair.className} text-2xl sm:text-3xl font-bold text-[#1B4D2A] mb-4`}
+							>
+								{selectedCategory
+									? `${selectedCategory} Products`
+									: "All Products"}
+							</h3>
+							<p className='text-gray-600 text-base sm:text-lg'>
+								Showing {filteredProducts.length}{" "}
+								{filteredProducts.length === 1 ? "product" : "products"}
+								{selectedCategory && ` in ${selectedCategory}`}
+							</p>
 						</div>
+						<ProductGrid products={filteredProducts} />
 					</div>
 				</section>
 			</div>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import Breadcrumb from "../../components/Breadcrumb";
 import ProductSlider from "../../components/ProductSlider";
 import { Button } from "@/components/ui/button";
@@ -18,6 +19,8 @@ import {
 	UtensilsCrossed,
 	BarChart,
 	Box,
+	ChevronLeft,
+	X,
 } from "lucide-react";
 import {
 	trackProductView,
@@ -37,7 +40,9 @@ export default function ProductPageClient({
 	product,
 	relatedProducts,
 }: ProductPageClientProps) {
+	const router = useRouter();
 	const [categoryId, setCategoryId] = useState<string>("");
+	const [isImageModalOpen, setIsImageModalOpen] = useState(false);
 
 	// Combine coverImage and additional images for the gallery, ensuring no duplicates
 	const allImages = Array.from(
@@ -115,74 +120,116 @@ export default function ProductPageClient({
 		<div
 			className={`${inter.className} min-h-screen bg-gradient-to-br from-amber-50 via-cream-50 to-yellow-50 py-4 sm:py-8`}
 		>
-			<div className='container mx-auto px-4'>
-				<Breadcrumb
-					items={[
-						{ label: "Products", href: "/products" },
-						{
-							label: product.category,
-							href: categoryId ? `/products/categories/${categoryId}` : "#",
-						},
-						{ label: product.name, href: `/products/${product.id}` },
-					]}
-				/>
+			{/* Image Modal */}
+			{isImageModalOpen && (
+				<div className='fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center'>
+					<div className='relative w-full h-full sm:w-[90%] sm:h-[90%] flex flex-col'>
+						{/* Close Button */}
+						<button
+							onClick={() => setIsImageModalOpen(false)}
+							className='absolute top-4 right-4 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors'
+						>
+							<X className='w-6 h-6 text-white' />
+						</button>
 
-				{/* Main Product Section */}
+						{/* Image Container */}
+						<div className='flex-1 relative m-4 sm:m-0'>
+							<Image
+								src={selectedImage}
+								alt={product.name}
+								fill
+								className='object-contain'
+								quality={100}
+							/>
+						</div>
+					</div>
+				</div>
+			)}
+
+			<div className='container mx-auto px-4'>
+				{/* Back Button for Mobile */}
+				<div className='lg:hidden mb-4'>
+					<button
+						onClick={() => router.back()}
+						className='inline-flex items-center gap-2 text-[#1B4D2A] font-medium hover:text-[#2a6b3f] transition-colors'
+					>
+						<ChevronLeft className='w-5 h-5' />
+						Back
+					</button>
+				</div>
+
+				{/* Breadcrumb for Desktop */}
+				<div className='hidden lg:block'>
+					<Breadcrumb
+						items={[
+							{ label: "Products", href: "/products" },
+							{
+								label: product.category,
+								href: categoryId ? `/products/categories/${categoryId}` : "#",
+							},
+							{ label: product.name, href: `/products/${product.id}` },
+						]}
+					/>
+				</div>
 				<div className='bg-white rounded-2xl shadow-xl border border-gray-100 p-6 sm:p-8 mb-8 overflow-hidden relative z-10'>
-					<div className='flex flex-col lg:flex-row gap-8 lg:gap-12'>
-						{/* Image Gallery */}
-						<div className='lg:w-[60%]'>
-							<div className='flex flex-col gap-4'>
-								{/* Main Image */}
-								<div className='relative aspect-[4/3] w-full rounded-2xl overflow-hidden shadow-lg group'>
-									{/* Overlay Badges */}
-									<div className='absolute bottom-4 left-4 flex flex-row items-center gap-3 z-10'>
-										<span className='inline-flex items-center gap-2 bg-[#1B4D2A]/90 text-white text-[10px] sm:text-xs font-semibold px-3 py-1 rounded-full shadow'>
-											<Shield className='w-3 h-3' /> Certified Organic
-										</span>
-										<span className='inline-flex items-center gap-2 bg-[#FDB913]/90 text-[#1B4D2A] text-[10px] sm:text-xs font-semibold px-3 py-1 rounded-full shadow'>
-											<Award className='w-3 h-3' /> Premium Quality
-										</span>
-									</div>
+					<div className='flex flex-col lg:flex-row gap-6 lg:gap-12'>
+						<div className='lg:hidden flex items-center justify-between'>
+							<span className='inline-flex items-center gap-2 bg-gradient-to-r from-[#FDB913]/20 to-[#FDB913]/10 text-[#1B4D2A] px-4 py-2 rounded-full text-sm font-semibold border border-[#FDB913]/30'>
+								<Leaf className='w-4 h-4' />
+								{product.category}
+							</span>
+							<div className='flex items-center gap-2'>
+								<button
+									onClick={handleShare}
+									className='p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors'
+								>
+									<Share2 className='w-5 h-5 text-gray-600' />
+								</button>
+							</div>
+						</div>
+
+						<div className='lg:w-[50%]'>
+							<div className='flex flex-col lg:flex-row gap-4'>
+								<div className='order-2 lg:order-1 flex lg:flex-col overflow-x-auto lg:overflow-x-visible space-x-2 lg:space-x-0 lg:space-y-3 pb-1 lg:pb-0'>
+									{allImages.map((image, index) => (
+										<div
+											key={index}
+											className={`relative w-12 aspect-[3/4] sm:w-16 lg:w-20 flex-shrink-0 rounded-lg lg:rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer border-2 ${
+												selectedImage === image
+													? "border-[#FDB913]"
+													: "border-transparent hover:border-[#FDB913]"
+											}`}
+											onClick={() => setSelectedImage(image)}
+										>
+											<Image
+												src={image || "/placeholder.svg"}
+												alt={`${product.name} - Image ${index + 1}`}
+												fill
+												className='object-cover'
+											/>
+										</div>
+									))}
+								</div>
+								<div
+									className='order-1 lg:order-2 relative aspect-[3/4] w-full lg:flex-1 rounded-2xl overflow-hidden shadow-lg group cursor-pointer'
+									onClick={() => setIsImageModalOpen(true)}
+								>
 									<Image
 										src={selectedImage}
 										alt={product.name}
 										fill
-										className='object-cover group-hover:scale-105 transition-transform duration-300'
+										className='object-cover'
 									/>
 								</div>
-
-								{/* Thumbnails */}
-								{allImages.length > 1 && (
-									<div className='flex space-x-3 overflow-auto pb-1'>
-										{allImages.map((image, index) => (
-											<div
-												key={index}
-												className={`relative w-20 aspect-[4/3] sm:w-24 rounded-xl overflow-hidden flex-shrink-0 shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer border-2 ${
-													selectedImage === image
-														? "border-[#FDB913]"
-														: "border-transparent hover:border-[#FDB913]"
-												}`}
-												onClick={() => setSelectedImage(image)}
-											>
-												<Image
-													src={image || "/placeholder.svg"}
-													alt={`${product.name} - Image ${index + 1}`}
-													fill
-													className='object-cover'
-												/>
-											</div>
-										))}
-									</div>
-								)}
 							</div>
 						</div>
 
 						{/* Product Info */}
-						<div className='lg:w-[40%] space-y-6'>
+						<div className='lg:w-[50%] space-y-6'>
 							{/* Header */}
-							<div className='space-y-4'>
-								<div className='flex items-center justify-between'>
+							<div className='space-y-4 sm:space-y-6 mb-0 sm:mb-12'>
+								{/* Category and Share - Desktop Only */}
+								<div className='hidden lg:flex items-center justify-between mb-16'>
 									<span className='inline-flex items-center gap-2 bg-gradient-to-r from-[#FDB913]/20 to-[#FDB913]/10 text-[#1B4D2A] px-4 py-2 rounded-full text-sm font-semibold border border-[#FDB913]/30'>
 										<Leaf className='w-4 h-4' />
 										{product.category}
@@ -276,13 +323,21 @@ export default function ProductPageClient({
 					{(product.longDescription || product.description) && (
 						<section className='space-y-4'>
 							<h2
-								className={`${playfair.className} text-2xl sm:text-3xl font-bold text-[#1B4D2A] mb-6 flex items-center gap-3`}
+								className={`${playfair.className} text-2xl sm:text-3xl font-bold text-[#1B4D2A] flex items-center gap-3`}
 							>
 								<div className='w-8 h-8 bg-gradient-to-br from-[#FDB913] to-[#ffdf8d] rounded-full flex items-center justify-center'>
 									<FileText className='w-4 h-4 text-[#1B4D2A]' />
 								</div>
 								Product Description
 							</h2>
+							<div className='flex flex-wrap items-center gap-2 justify-start mb-6'>
+								<span className='inline-flex items-center gap-2 bg-[#1B4D2A] text-white text-xs font-semibold px-3 py-1 sm:px-4 sm:py-2 rounded-full shadow-md'>
+									<Shield className='w-4 h-4' /> Certified Organic
+								</span>
+								<span className='inline-flex items-center gap-2 bg-[#FDB913] text-[#1B4D2A] text-xs font-semibold px-3 py-1 sm:px-4 sm:py-2 rounded-full shadow-md'>
+									<Award className='w-4 h-4' /> Premium Quality
+								</span>
+							</div>
 							<p className='text-gray-700 leading-relaxed text-base sm:text-lg'>
 								{product.longDescription || product.description}
 							</p>

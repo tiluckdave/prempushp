@@ -48,6 +48,8 @@ function convertFirebaseProduct(firebaseProduct: FirebaseProduct): Product {
 			typeof img === "string" ? img : (img as any)?.url || ""
 		),
 		coverImage: firebaseProduct.coverImage?.url,
+		published: firebaseProduct.published,
+		isNew: firebaseProduct.isNew,
 	};
 }
 
@@ -65,7 +67,11 @@ function convertFirebaseCategory(firebaseCategory: FirebaseCategory): Category {
 export async function getAllProducts(): Promise<Product[]> {
 	try {
 		const productsCollection = collection(db, "products");
-		const productsSnapshot = await getDocs(productsCollection);
+		const productsQuery = query(
+			productsCollection,
+			where("published", "==", true)
+		);
+		const productsSnapshot = await getDocs(productsQuery);
 
 		const products: Product[] = [];
 		productsSnapshot.forEach((doc) => {
@@ -83,38 +89,47 @@ export async function getAllProducts(): Promise<Product[]> {
 // Fetch featured products
 export async function getFeaturedProducts(): Promise<Product[]> {
 	try {
-		// Get all products first
-		const allProducts = await getAllProducts();
+		const productsCollection = collection(db, "products");
+		const featuredQuery = query(
+			productsCollection,
+			where("featured", "==", true),
+			where("published", "==", true)
+		);
+		const productsSnapshot = await getDocs(featuredQuery);
 
-		// Filter for featured products
-		const featuredProducts = allProducts.filter((product) => {
-			return product.featured === true;
+		const products: Product[] = [];
+		productsSnapshot.forEach((doc) => {
+			const data = { id: doc.id, ...doc.data() } as FirebaseProduct;
+			products.push(convertFirebaseProduct(data));
 		});
 
-		return featuredProducts;
+		return products;
 	} catch (error) {
 		console.error("Error fetching featured products:", error);
 		return [];
 	}
 }
 
-// Fetch single product by ID
+// Fetch product by ID
 export async function getProductById(id: string): Promise<Product | null> {
 	try {
-		const productDoc = doc(db, "products", id);
-		const productSnapshot = await getDoc(productDoc);
+		const productRef = doc(db, "products", id);
+		const productDoc = await getDoc(productRef);
 
-		if (productSnapshot.exists()) {
-			const data = {
-				id: productSnapshot.id,
-				...productSnapshot.data(),
-			} as FirebaseProduct;
-			return convertFirebaseProduct(data);
+		if (!productDoc.exists()) {
+			return null;
 		}
 
-		return null;
+		const data = { id: productDoc.id, ...productDoc.data() } as FirebaseProduct;
+
+		// Only return if the product is published
+		if (!data.published) {
+			return null;
+		}
+
+		return convertFirebaseProduct(data);
 	} catch (error) {
-		console.error("Error fetching product:", error);
+		console.error("Error fetching product by ID:", error);
 		return null;
 	}
 }
@@ -127,7 +142,8 @@ export async function getProductsByCategory(
 		const productsCollection = collection(db, "products");
 		const categoryQuery = query(
 			productsCollection,
-			where("category.name", "==", categoryName)
+			where("category.name", "==", categoryName),
+			where("published", "==", true)
 		);
 		const productsSnapshot = await getDocs(categoryQuery);
 
@@ -176,6 +192,7 @@ export async function getRelatedProducts(
 		const relatedQuery = query(
 			productsCollection,
 			where("category.name", "==", categoryName),
+			where("published", "==", true),
 			limit(limitCount + 5) // Get more to ensure we have enough after filtering
 		);
 
