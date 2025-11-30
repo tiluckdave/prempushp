@@ -28,20 +28,21 @@ export default function Header() {
 
 	return (
 		<header
-			className={`fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-[#1B4D2A] via-[#2a6b3f] to-[#1B4D2A] shadow-xl backdrop-blur-sm py-3 sm:py-3 ${inter.className}`}
+			className={`fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-[#1B4D2A] via-[#2a6b3f] to-[#1B4D2A] shadow-xl backdrop-blur-sm py-3 sm:py-3 overflow-visible ${inter.className}`}
 		>
 			<div className='absolute inset-0 bg-[url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.02"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")] opacity-30'></div>
 
 			<div className='relative container mx-auto px-4'>
 				<div className='flex items-center justify-between'>
-					<Link href='/' className='flex items-center group'>
-						<div className='relative'>
+					<Link href='/' className='flex items-center group relative z-50'>
+						<div className='relative flex h-10 md:h-12'>
 							<Image
 								src='/logo.png'
 								alt='Prempushp Logo'
-								width={120}
-								height={60}
-								className='h-10 md:h-12 w-auto transition-all duration-300 group-hover:scale-105 group-hover:brightness-110'
+								width={125}
+								height={101.75}
+								className='h-20 md:h-24 w-auto transition-all duration-300 group-hover:scale-105 group-hover:brightness-110 drop-shadow-lg'
+								priority
 							/>
 						</div>
 					</Link>
