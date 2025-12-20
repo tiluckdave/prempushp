@@ -216,7 +216,6 @@ export default function AboutPage() {
 							</p>
 						</div>
 						<div className='flex justify-center'>
-							{/* Astharva Datya */}
 							<div className='flex flex-col items-center text-center bg-white rounded-2xl shadow-lg p-6 sm:p-8 border border-gray-100 max-w-md'>
 								<Image
 									src='/atharv_dave.png'
