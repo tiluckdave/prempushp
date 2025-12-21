@@ -330,14 +330,6 @@ export default function ProductPageClient({
 									</div>
 									Product Description
 								</h2>
-								<div className='flex flex-wrap items-center gap-2 justify-start mb-6'>
-									<span className='inline-flex items-center gap-2 bg-[#1B4D2A] text-white text-xs font-semibold px-3 py-1 sm:px-4 sm:py-2 rounded-full shadow-md'>
-										<Shield className='w-4 h-4' /> Certified Organic
-									</span>
-									<span className='inline-flex items-center gap-2 bg-[#FDB913] text-[#1B4D2A] text-xs font-semibold px-3 py-1 sm:px-4 sm:py-2 rounded-full shadow-md'>
-										<Award className='w-4 h-4' /> Premium Quality
-									</span>
-								</div>
 								<p className='text-gray-700 leading-relaxed text-base sm:text-lg'>
 									{product.longDescription || product.description}
 								</p>

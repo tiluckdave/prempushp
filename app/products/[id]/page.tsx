@@ -9,7 +9,8 @@ import {
 	ProductSEOData,
 } from "../../lib/seo";
 
-export const revalidate = 3600;
+// 5 minutes
+export const revalidate = 300;
 
 const baseUrl = "https://prempushp.in";
 
