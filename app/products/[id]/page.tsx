@@ -9,6 +9,8 @@ import {
 	ProductSEOData,
 } from "../../lib/seo";
 
+export const revalidate = 3600;
+
 const baseUrl = "https://prempushp.in";
 
 export async function generateMetadata({
