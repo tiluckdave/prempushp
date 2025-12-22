@@ -50,7 +50,6 @@ export async function generateMetadata({
 			brand: "Prempushp",
 			sku: product.id,
 			ingredients: product.ingredients,
-			nutritionInfo: product.nutritionalInfo,
 			dietaryPreferences: product.dietaryPreferences,
 			sizes: product.sizes,
 		};
@@ -185,7 +184,6 @@ export default async function ProductPage({
 			brand: "Prempushp",
 			sku: product.id,
 			ingredients: product.ingredients,
-			nutritionInfo: product.nutritionalInfo,
 			dietaryPreferences: product.dietaryPreferences,
 			sizes: product.sizes,
 		};

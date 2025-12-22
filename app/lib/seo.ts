@@ -28,7 +28,7 @@ export interface ProductSEOData {
 	ingredients?: string[];
 	nutritionInfo?: any;
 	dietaryPreferences?: string[];
-	sizes?: Array<{ size: string; mrp: number }>;
+	sizes?: Array<{ size: string; mrp: number; unit: string }>;
 }
 
 export interface BreadcrumbItem {

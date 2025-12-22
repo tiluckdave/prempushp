@@ -25,6 +25,11 @@ export default function ProductCard({ product }: ProductCardProps) {
 			? product.sizes.find((s) => s.mrp === startingPrice)?.size
 			: null;
 
+	const startingPriceUnit =
+		product.sizes && product.sizes.length > 0
+			? product.sizes.find((s) => s.mrp === startingPrice)?.unit
+			: null;
+
 	const handleEnquire = () => {
 		trackProductEnquiry(product.id).catch(console.error);
 		if (typeof window === "undefined") return;
@@ -123,7 +128,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 								</p>
 								{startingPriceSize && (
 									<p className='text-xs text-gray-500'>
-										for {startingPriceSize}
+										for {startingPriceSize} {startingPriceUnit}
 									</p>
 								)}
 							</div>

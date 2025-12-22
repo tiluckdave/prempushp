@@ -229,7 +229,7 @@ export default function ProductPageClient({
 								{/* Header */}
 								<div className='space-y-4 sm:space-y-6 mb-0 sm:mb-12'>
 									{/* Category and Share - Desktop Only */}
-									<div className='hidden lg:flex items-center justify-between mb-16'>
+									<div className='hidden lg:flex items-center justify-between'>
 										<span className='inline-flex items-center gap-2 bg-gradient-to-r from-[#FDB913]/20 to-[#FDB913]/10 text-[#1B4D2A] px-4 py-2 rounded-full text-sm font-semibold border border-[#FDB913]/30'>
 											<Leaf className='w-4 h-4' />
 											{product.category}
@@ -257,7 +257,7 @@ export default function ProductPageClient({
 									{/* Dietary Preferences */}
 									{product.dietaryPreferences &&
 										product.dietaryPreferences.length > 0 && (
-											<div className='flex flex-wrap gap-2 pt-2'>
+											<div className='flex flex-wrap gap-2'>
 												{product.dietaryPreferences.map((pref, idx) => (
 													<span
 														key={idx}
@@ -278,6 +278,16 @@ export default function ProductPageClient({
 									<div className='bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-200 overflow-hidden shadow-inner'>
 										<div className='p-0'>
 											<table className='w-full'>
+												<thead>
+													<tr className='bg-gray-100 border-b border-gray-200'>
+														<th className='px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider'>
+															Weight
+														</th>
+														<th className='px-6 py-3 text-right text-xs font-bold text-gray-600 uppercase tracking-wider'>
+															Price
+														</th>
+													</tr>
+												</thead>
 												<tbody>
 													{product.sizes.map((size, index) => (
 														<tr
@@ -287,7 +297,7 @@ export default function ProductPageClient({
 															} hover:bg-[#FDB913]/10 transition-colors`}
 														>
 															<td className='px-6 py-4 text-gray-800 font-medium'>
-																{size.size}
+																{size.size} {size.unit}
 															</td>
 															<td className='px-6 py-4 text-right'>
 																<span className='text-xl font-bold text-[#1B4D2A]'>
@@ -361,80 +371,7 @@ export default function ProductPageClient({
 							</section>
 						)}
 
-						{/* Nutritional Information */}
-						{product.nutritionalInfo &&
-							(product.nutritionalInfo.servingSize ||
-								product.nutritionalInfo.calories ||
-								product.nutritionalInfo.protein ||
-								product.nutritionalInfo.carbohydrates ||
-								product.nutritionalInfo.fat) && (
-								<section className='space-y-4'>
-									<h2
-										className={`${playfair.className} text-2xl sm:text-3xl font-bold text-[#1B4D2A] mb-6 flex items-center gap-3`}
-									>
-										<div className='w-8 h-8 bg-gradient-to-br from-[#FDB913] to-[#ffdf8d] rounded-full flex items-center justify-center'>
-											<BarChart className='w-4 h-4 text-[#1B4D2A]' />
-										</div>
-										Nutritional Information
-									</h2>
-									<div className='w-full sm:w-[35%]'>
-										<table className='w-full text-left border border-gray-100'>
-											<tbody>
-												{product.nutritionalInfo.servingSize && (
-													<tr className='border-b'>
-														<td className='px-4 py-2 font-medium text-gray-700'>
-															Serving Size
-														</td>
-														<td className='px-4 py-2 text-[#1B4D2A] font-semibold'>
-															{product.nutritionalInfo.servingSize}
-														</td>
-													</tr>
-												)}
-												{product.nutritionalInfo.calories && (
-													<tr className='border-b'>
-														<td className='px-4 py-2 font-medium text-gray-700'>
-															Calories
-														</td>
-														<td className='px-4 py-2 text-[#1B4D2A] font-semibold'>
-															{product.nutritionalInfo.calories}
-														</td>
-													</tr>
-												)}
-												{product.nutritionalInfo.protein && (
-													<tr className='border-b'>
-														<td className='px-4 py-2 font-medium text-gray-700'>
-															Protein
-														</td>
-														<td className='px-4 py-2 text-[#1B4D2A] font-semibold'>
-															{product.nutritionalInfo.protein}
-														</td>
-													</tr>
-												)}
-												{product.nutritionalInfo.carbohydrates && (
-													<tr className='border-b'>
-														<td className='px-4 py-2 font-medium text-gray-700'>
-															Carbohydrates
-														</td>
-														<td className='px-4 py-2 text-[#1B4D2A] font-semibold'>
-															{product.nutritionalInfo.carbohydrates}
-														</td>
-													</tr>
-												)}
-												{product.nutritionalInfo.fat && (
-													<tr>
-														<td className='px-4 py-2 font-medium text-gray-700'>
-															Fat
-														</td>
-														<td className='px-4 py-2 text-[#1B4D2A] font-semibold'>
-															{product.nutritionalInfo.fat}
-														</td>
-													</tr>
-												)}
-											</tbody>
-										</table>
-									</div>
-								</section>
-							)}
+						
 
 						{/* Storage Instructions */}
 						{product.storageInstructions &&

@@ -30,17 +30,9 @@ function convertFirebaseProduct(firebaseProduct: FirebaseProduct): Product {
 		sizes: firebaseProduct.sizes?.map((size) => ({
 			size: size.size,
 			mrp: parseFloat(size.mrp.replace(/[^\d.]/g, "")) || 0, // Remove "Rs." and convert to number
+			unit: size.unit,
 		})),
 		ingredients: firebaseProduct.ingredients,
-		nutritionalInfo: {
-			servingSize: firebaseProduct.nutritionInfo?.servingSize || "",
-			calories: firebaseProduct.nutritionInfo?.calories
-				? parseInt(firebaseProduct.nutritionInfo.calories)
-				: undefined,
-			protein: firebaseProduct.nutritionInfo?.protein || "",
-			carbohydrates: firebaseProduct.nutritionInfo?.carbs || "",
-			fat: firebaseProduct.nutritionInfo?.fat || "",
-		},
 		storageInstructions: firebaseProduct.storageInstructions,
 		dietaryPreferences: firebaseProduct.dietaryPreferences,
 		featured: firebaseProduct.featured,

@@ -32,6 +32,7 @@ export interface FirebaseProduct {
 	sizes: Array<{
 		mrp: string;
 		size: string;
+		unit: string;
 	}>;
 	storageInstructions: string;
 	dietaryPreferences: string[];
@@ -51,15 +52,8 @@ export interface Product {
 	shortDescription?: string;
 	longDescription?: string;
 	description?: string;
-	sizes?: { size: string; mrp: number }[];
+	sizes?: { size: string; mrp: number; unit: string }[];
 	ingredients?: string[];
-	nutritionalInfo?: {
-		servingSize?: string;
-		calories?: number;
-		protein?: string;
-		carbohydrates?: string;
-		fat?: string;
-	};
 	storageInstructions?: string;
 	dietaryPreferences?: string[];
 	featured?: boolean;
