@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import { getAllProducts, getAllCategories } from "./services/firebase";
 
-const baseUrl =  "https://prempushp.in";
+const baseUrl = "https://prempushp.in";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	try {
@@ -81,12 +81,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			getAllCategories(),
 		]);
 
-		// Product pages
+		// Product pages with current timestamp to force Google crawl
 		const productPages = products.map((product) => ({
 			url: `${baseUrl}/products/${product.id}`,
-			lastModified: new Date(),
-			changeFrequency: "weekly" as const,
-			priority: 0.8,
+			lastModified: new Date(), // Current date to force recrawl
+			changeFrequency: "daily" as const, // Changed to daily for faster updates
+			priority: 0.9, // Increase priority for products
 		}));
 
 		// Category pages
