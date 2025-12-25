@@ -1,7 +1,7 @@
 {
-    "name": "Prempushp - Premium Organic Food Products",
-    "short_name": "Prempushp",
-    "description": "Premium organic food products - certified organic, sustainably sourced, delivered fresh from our farms to your family.",
+    "name": "PREMPUSHP FOODS - Premium Natural Food Products",  
+    "short_name": "PREMPUSHP FOODS",
+    "description": "Premium natural food products - certified natural, sustainably sourced, delivered fresh from our farms to your family.",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#1B4D2A",
@@ -42,7 +42,7 @@
         {
             "name": "Browse Products",
             "short_name": "Products",
-            "description": "Browse our organic food products",
+            "description": "Browse our natural food products",
             "url": "/products",
             "icons": [
                 {

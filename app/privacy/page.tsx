@@ -58,7 +58,7 @@ export default function PrivacyPolicyPage() {
 						{/* Introduction */}
 						<div className='bg-white rounded-2xl shadow-xl border border-gray-100 p-6 sm:p-8 md:p-10'>
 							<p className='text-gray-700 text-base sm:text-lg leading-relaxed'>
-								At Prempushp, we are committed to protecting your privacy and
+								At PREMPUSHP FOODS, we are committed to protecting your privacy and
 								ensuring the security of your personal information. This Privacy
 								Policy outlines how we collect, use, and safeguard your data
 								when you use our website or services. By using our services, you

@@ -32,9 +32,9 @@ export const metadata: Metadata = {
 	description: META_DESCRIPTIONS.home,
 	keywords:
 		"organic food products, premium organic foods, certified organic food, healthy organic products, natural food products, organic ingredients, pure organic foods, fresh organic products, sustainable food products, chemical-free foods, organic spices, organic grains, organic pulses, organic oils",
-	authors: [{ name: "Prempushp" }],
-	creator: "Prempushp",
-	publisher: "Prempushp",
+	authors: [{ name: "PREMPUSHP FOODS" }],
+	creator: "PREMPUSHP FOODS",
+	publisher: "PREMPUSHP FOODS",
 	formatDetection: {
 		email: false,
 		address: false,
@@ -57,13 +57,13 @@ export const metadata: Metadata = {
 		url: baseUrl,
 		title: PAGE_TITLES.home,
 		description: META_DESCRIPTIONS.home,
-		siteName: "Prempushp - Premium Organic Food Products",
+		siteName: "PREMPUSHP FOODS - Premium Natural Food Products",
 		images: [
 			{
 				url: `${baseUrl}/og-image.jpg`,
 				width: 1200,
 				height: 630,
-				alt: "Prempushp - Premium Organic Food Products",
+				alt: "PREMPUSHP FOODS - Premium Natural Food Products",
 			},
 		],
 	},

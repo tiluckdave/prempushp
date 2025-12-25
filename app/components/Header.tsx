@@ -36,6 +36,9 @@ export default function Header() {
 				<div className='flex items-center justify-between'>
 					<Link href='/' className='flex items-center group relative z-50'>
 						<div className='relative flex h-10 md:h-12'>
+							<span className='absolute -top-3.5 right-0 text-[10px] md:text-xxs font-bold text-black z-10'>
+								TM
+							</span>
 							<Image
 								src='/logo.png'
 								alt='Prempushp Logo'

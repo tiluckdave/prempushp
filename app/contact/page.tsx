@@ -261,7 +261,7 @@ export default function ContactPage() {
 													Come see us in person
 												</p>
 												<p className='text-[#1B4D2A] font-semibold'>
-													PremPushp, M16, VHB Colony
+													Prempushp, M16, VHB Colony
 													<br />
 													Gaurakshan Road, Near Gaurakshan Sansthan
 													<br />

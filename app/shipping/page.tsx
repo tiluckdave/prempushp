@@ -79,7 +79,7 @@ export default function ShippingPage() {
 						{/* Introduction */}
 						<div className='bg-white rounded-2xl shadow-xl border border-gray-100 p-6 sm:p-8 md:p-10'>
 							<p className='text-gray-700 text-base sm:text-lg leading-relaxed'>
-								At Prempushp, we strive to deliver your organic products as
+								At PREMPUSHP FOODS, we strive to deliver your natural products as
 								quickly and efficiently as possible. We understand the
 								importance of fresh, quality products reaching you in perfect
 								condition, which is why we've partnered with trusted logistics

@@ -74,7 +74,7 @@ export default function ProductsPage() {
 				image: product.coverImage || product.images?.[0],
 				brand: {
 					"@type": "Brand",
-					name: "Prempushp",
+					name: "PREMPUSHP FOODS",
 				},
 				category: product.category,
 				url: `${baseUrl}/products/${product.id}`,

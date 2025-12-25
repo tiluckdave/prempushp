@@ -159,7 +159,7 @@ export function generateMetaTags(data: SEOPageData) {
 			type: data.ogType || "website",
 			url: data.canonicalUrl,
 			images: data.ogImage ? [{ url: data.ogImage }] : undefined,
-			siteName: "Prempushp - Premium Organic Food Products",
+			siteName: "PREMPUSHP FOODS - Premium Natural Food Products",
 		},
 		twitter: {
 			card: "summary_large_image",
@@ -232,7 +232,7 @@ export function generateProductSchema(
 				reviewBody: `Excellent quality ${product.name.toLowerCase()}. The organic certification gives me confidence in the product's authenticity.`,
 				publisher: {
 					"@type": "Organization",
-					name: "Prempushp",
+					name: "PREMPUSHP FOODS",
 				},
 			},
 			{
@@ -251,7 +251,7 @@ export function generateProductSchema(
 				reviewBody: `Very satisfied with the ${product.name.toLowerCase()}. The quality is outstanding and the packaging maintains freshness.`,
 				publisher: {
 					"@type": "Organization",
-					name: "Prempushp",
+					name: "PREMPUSHP FOODS",
 				},
 			},
 			{
@@ -270,7 +270,7 @@ export function generateProductSchema(
 				reviewBody: `This ${product.name.toLowerCase()} exceeded my expectations. Will definitely buy again.`,
 				publisher: {
 					"@type": "Organization",
-					name: "Prempushp",
+					name: "PREMPUSHP FOODS",
 				},
 			},
 		],
@@ -414,12 +414,11 @@ export function generateOrganizationSchema(baseUrl: string) {
 	return {
 		"@context": "https://schema.org",
 		"@type": "Organization",
-		name: "Prempushp",
-		alternateName: "Prempushp Food Products",
+		name: "PREMPUSHP FOODS",
 		url: baseUrl,
 		logo: `${baseUrl}/logo.png`,
 		description:
-			"Premium organic food products - certified organic, sustainably sourced, and delivered fresh from farms to your family.",
+			"Premium natural food products - certified natural, sustainably sourced, and delivered fresh from farms to your family.",
 		contactPoint: {
 			"@type": "ContactPoint",
 			telephone: "+91-8275434017",
@@ -490,11 +489,10 @@ export function generateWebsiteSchema(baseUrl: string) {
 	return {
 		"@context": "https://schema.org",
 		"@type": "WebSite",
-		name: "Prempushp - Premium Organic Food Products",
-		alternateName: "Prempushp Food Products",
+		name: "PREMPUSHP FOODS - Premium Natural Food Products",
 		url: baseUrl,
 		description:
-			"Discover premium organic food products made with fresh ingredients. Certified organic, sustainably sourced, delivered fresh.",
+			"Discover premium natural food products made with fresh ingredients. Certified natural, sustainably sourced, delivered fresh.",
 		potentialAction: {
 			"@type": "SearchAction",
 			target: {
@@ -513,23 +511,23 @@ export function generateWebsiteSchema(baseUrl: string) {
 
 // Common meta descriptions for different page types
 export const META_DESCRIPTIONS = {
-	home: "Discover premium organic food products at Prempushp. Certified organic, sustainably sourced, and delivered fresh from our farms to your family. Shop now!",
+	home: "Discover premium natural food products at PREMPUSHP FOODS. Certified natural, sustainably sourced, and delivered fresh from our farms to your family. Shop now!",
 	products:
-		"Browse our complete range of premium organic food products. From spices to grains, pulses to oils - all certified organic and sustainably sourced.",
+		"Browse our complete range of premium natural food products. From spices to grains, pulses to oils - all certified natural and sustainably sourced.",
 	about:
-		"Learn about Prempushp's commitment to providing premium organic food products. Our story of sustainable farming and quality assurance.",
+		"Learn about PREMPUSHP FOODS's commitment to providing premium natural food products. Our story of sustainable farming and quality assurance.",
 	contact:
-		"Get in touch with Prempushp for premium organic food products. Contact us for bulk orders, distribution opportunities, or any queries.",
+		"Get in touch with PREMPUSHP FOODS for premium natural food products. Contact us for bulk orders, distribution opportunities, or any queries.",
 	distributor:
-		"Join Prempushp's distributor network and build a profitable business with premium organic food products. Learn about partnership opportunities.",
+		"Join PREMPUSHP FOODS's distributor network and build a profitable business with premium natural food products. Learn about partnership opportunities.",
 };
 
 // Page titles for different sections
 export const PAGE_TITLES = {
-	home: "Prempushp - Premium Organic Food Products | Buy Online | Certified Organic",
-	products: "Organic Food Products | Premium Quality | Buy Online - Prempushp",
-	about: "About Prempushp - Premium Organic Food Products | Our Story",
-	contact: "Contact Prempushp - Premium Organic Food Products | Get in Touch",
+	home: "PREMPUSHP FOODS - Premium Natural Food Products | Buy Online | Certified Natural",
+	products: "Natural Food Products | Premium Quality | Buy Online - PREMPUSHP FOODS",
+	about: "About PREMPUSHP FOODS - Premium Natural Food Products | Our Story",
+	contact: "Contact PREMPUSHP FOODS - Premium Natural Food Products | Get in Touch",
 	distributor:
-		"Become a Distributor - Prempushp Organic Foods | Partnership Opportunities",
+		"Become a Distributor - PREMPUSHP FOODS Natural Foods | Partnership Opportunities",
 };

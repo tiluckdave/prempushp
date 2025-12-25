@@ -71,11 +71,11 @@ export default function Home() {
 	const websiteSchema = {
 		"@context": "https://schema.org",
 		"@type": "WebSite",
-		name: "Prempushp - Premium Organic Food Products",
-		alternateName: "Prempushp Food Products",
+		name: "PREMPUSHP FOODS - Premium Natural Food Products",
+		alternateName: "PREMPUSHP FOODS Food Products",
 		url: baseUrl,
 		description:
-			"Discover premium organic food products - certified organic, sustainably sourced, delivered fresh from our farms to your family.",
+			"Discover premium natural food products - certified natural, sustainably sourced, delivered fresh from our farms to your family.",
 		potentialAction: {
 			"@type": "SearchAction",
 			target: {
@@ -86,7 +86,7 @@ export default function Home() {
 		},
 		publisher: {
 			"@type": "Organization",
-			name: "Prempushp",
+			name: "PREMPUSHP FOODS",
 			logo: `${baseUrl}/logo.png`,
 		},
 	};
@@ -94,12 +94,11 @@ export default function Home() {
 	const organizationSchema = {
 		"@context": "https://schema.org",
 		"@type": "Organization",
-		name: "Prempushp",
-		alternateName: "Prempushp Food Products",
+		name: "PREMPUSHP FOODS",
 		url: baseUrl,
 		logo: `${baseUrl}/logo.png`,
 		description:
-			"Premium organic food products - certified organic, sustainably sourced, and delivered fresh from farms to your family.",
+			"Premium natural food products - certified natural, sustainably sourced, and delivered fresh from farms to your family.",
 		contactPoint: {
 			"@type": "ContactPoint",
 			telephone: "+91-8275434017",
@@ -113,10 +112,10 @@ export default function Home() {
 		areaServed: "IN",
 		hasOfferCatalog: {
 			"@type": "OfferCatalog",
-			name: "Organic Food Products",
+			name: "Natural Food Products",
 			itemListElement: categories.map((category) => ({
 				"@type": "OfferCatalog",
-				name: `Organic ${category.name}`,
+				name: `Natural ${category.name}`,
 				itemListElement: products
 					.filter((p) => p.category === category.name)
 					.slice(0, 5)
@@ -129,7 +128,7 @@ export default function Home() {
 							image: product.coverImage || product.images?.[0],
 							brand: {
 								"@type": "Brand",
-								name: "Prempushp",
+								name: "PREMPUSHP FOODS",
 							},
 						},
 					})),
@@ -202,19 +201,19 @@ export default function Home() {
 						<div className='max-w-4xl mx-auto'>
 							<div className='mb-6 sm:mb-8'>
 								<span className='text-[#1B4D2A]/70 text-sm sm:text-base font-medium tracking-wide uppercase'>
-									Organic Premium Products
+									Natural Premium Products
 								</span>
 							</div>
 
 							<h1
 								className={`${playfair.className} text-4xl sm:text-5xl md:text-6xl font-bold text-[#1B4D2A] mb-6 leading-tight`}
 							>
-								Prempushp&nbsp;Food Products
+								PREMPUSHP FOODS
 							</h1>
 
 							<p className='text-lg sm:text-xl text-gray-700 mb-10 leading-relaxed max-w-3xl mx-auto'>
 								Experience nature's purest flavours with our handcrafted range
-								of certified organic foods – sustainably grown, ethically
+								of certified natural foods - sustainably grown, ethically
 								sourced, and delivered fresh from our farms to your family.
 							</p>
 

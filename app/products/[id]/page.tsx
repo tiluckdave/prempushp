@@ -47,7 +47,7 @@ export async function generateMetadata({
 			price: product.sizes?.[0]?.mrp || 0,
 			priceCurrency: "INR",
 			availability: "InStock",
-			brand: "Prempushp",
+			brand: "PREMPUSHP FOODS",
 			sku: product.id,
 			ingredients: product.ingredients,
 			dietaryPreferences: product.dietaryPreferences,
@@ -60,11 +60,11 @@ export async function generateMetadata({
 			product.coverImage || product.images?.[0] || `${baseUrl}/og-image.jpg`;
 
 		// Create optimized title for SEO
-		const seoTitle = `${product.name} - Premium Organic ${product.category} | Buy Online - Prempushp`;
-		const seoDescription = `Buy premium organic ${product.name.toLowerCase()} online. ${
+		const seoTitle = `${product.name} - Premium Natural ${product.category} | Buy Online - PREMPUSHP FOODS`;
+		const seoDescription = `Buy premium natural ${product.name.toLowerCase()} online. ${
 			product.shortDescription ||
 			product.description ||
-			"Certified organic, sustainably sourced, fresh quality guaranteed."
+			"Certified natural, sustainably sourced, fresh quality guaranteed."
 		}${
 			product.sizes
 				? ` Available in ${
@@ -79,9 +79,9 @@ export async function generateMetadata({
 			title: seoTitle,
 			description: seoDescription,
 			keywords: keywords.join(", "),
-			authors: [{ name: "Prempushp" }],
-			creator: "Prempushp",
-			publisher: "Prempushp",
+			authors: [{ name: "PREMPUSHP FOODS" }],
+			creator: "PREMPUSHP FOODS",
+			publisher: "PREMPUSHP FOODS",
 			category: "food",
 			openGraph: {
 				title: seoTitle,
@@ -138,7 +138,7 @@ export async function generateMetadata({
 	} catch (error) {
 		console.error("Error generating metadata:", error);
 		return {
-			title: "Product - Prempushp",
+			title: "Product - PREMPUSHP FOODS",
 			description:
 				"Premium organic food products - certified organic, sustainably sourced.",
 		};
@@ -181,7 +181,7 @@ export default async function ProductPage({
 			price: product.sizes?.[0]?.mrp || 0,
 			priceCurrency: "INR",
 			availability: "InStock",
-			brand: "Prempushp",
+			brand: "PREMPUSHP FOODS",
 			sku: product.id,
 			ingredients: product.ingredients,
 			dietaryPreferences: product.dietaryPreferences,

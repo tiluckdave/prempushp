@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
 	Instagram,
 	Mail,
@@ -24,14 +25,18 @@ export default function Footer() {
 					{/* About Section */}
 					<div className='lg:col-span-2'>
 						<div className='flex items-center mb-6'>
-							<div className='w-12 h-12 bg-gradient-to-br from-[#FDB913] to-[#ffdf8d] rounded-full flex items-center justify-center shadow-lg mr-4'>
-								<Heart className='w-6 h-6 text-[#1B4D2A]' />
+							<div className='relative'>
+								<span className='absolute -top-3.5 right-0 text-[10px] md:text-xxs font-bold text-black z-10'>
+									TM
+								</span>
+								<Image
+									src='/logo.png'
+									alt='Prempushp Logo'
+									width={125}
+									height={101.75}
+									className='h-16 md:h-20 w-auto drop-shadow-lg'
+								/>
 							</div>
-							<h3
-								className={`${playfair.className} text-2xl md:text-3xl font-bold text-[#FDB913]`}
-							>
-								Prempushp
-							</h3>
 						</div>
 						<p className='text-white/90 mb-8 leading-relaxed text-base md:text-lg max-w-md'>
 							Dedicated to bringing you the finest organic food products,
@@ -131,7 +136,7 @@ export default function Footer() {
 								<div>
 									<p className='text-white/60 text-sm mb-1'>Address</p>
 									<p className='text-white font-medium'>
-										PremPushp, M16, VHB Colony
+										Prempushp, M16, VHB Colony
 										<br />
 										Gaurakshan Road, Near Gaurakshan Sansthan
 										<br />
