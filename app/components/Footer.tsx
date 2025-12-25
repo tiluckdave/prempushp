@@ -153,11 +153,11 @@ export default function Footer() {
 					<div className='flex flex-col md:flex-row justify-between items-center gap-4'>
 						<div className='text-center md:text-left'>
 							<p className='text-white/80 text-sm'>
-								&copy; {new Date().getFullYear()} Prempushp. All rights
+								&copy; {new Date().getFullYear()} PREMPUSHP FOODS. All rights
 								reserved.
 							</p>
 							<p className='text-white/60 text-xs mt-1'>
-								Made with ❤️ by Tilak
+								Made with ❤️ by Tilak Dave
 							</p>
 						</div>
 						<div className='flex flex-wrap justify-center md:justify-end gap-6 text-sm'>
