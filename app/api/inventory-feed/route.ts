@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getAllProducts } from "../../services/firebase";
 
 // Store code from Google Business Profile
-const STORE_CODE = "AKOLA01";
+const STORE_CODE = "PPAKOLA01";
 
 export async function GET() {
 	try {
