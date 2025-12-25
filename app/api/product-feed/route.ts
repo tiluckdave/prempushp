@@ -3,6 +3,9 @@ import { getAllProducts } from "../../services/firebase";
 
 const baseUrl = "https://prempushp.in";
 
+// Store code from Google Business Profile
+const STORE_CODE = "PPAKOLA01";
+
 export async function GET() {
 	try {
 		const products = await getAllProducts();
@@ -51,6 +54,7 @@ export async function GET() {
 
 				return `  <item>
     <g:id>${product.id}</g:id>
+    <g:store_code>${STORE_CODE}</g:store_code>
     <g:title><![CDATA[${product.name}]]></g:title>
     <g:description><![CDATA[${description}]]></g:description>
     <g:link>${productUrl}</g:link>
