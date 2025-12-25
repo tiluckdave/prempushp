@@ -1,21 +1,19 @@
 import { NextResponse } from "next/server";
 import { getAllProducts } from "../../services/firebase";
 
-const baseUrl = "https://prempushp.in";
-
-// TODO: Update this with your actual Google Business Profile store code
-// Find it at: https://business.google.com/ → Select location → Info → Store code
-// Examples: "MAIN-STORE", "WAREHOUSE-01", "DELHI-01"
-const STORE_CODE = "AKOLA"; // ⚠️ Use text code from Business Profile, NOT the location ID number!
+// Store code from Google Business Profile
+const STORE_CODE = "AKOLA01";
 
 export async function GET() {
 	try {
 		const products = await getAllProducts();
 
-		// Generate local inventory feed for Google Merchant Center
-		const inventoryItems = products
+		// Generate CSV header with store_code (tab-delimited)
+		const csvHeader = "store_code\tid\tquantity\tprice\tavailability\n";
+
+		// Generate CSV rows (tab-delimited for Google Merchant Center)
+		const csvRows = products
 			.filter((product) => {
-				// Only include products with required data
 				return (
 					product.id &&
 					product.name &&
@@ -28,43 +26,26 @@ export async function GET() {
 					...(product.sizes || []).map((s) => s.mrp)
 				);
 
-				return `  <entry>
-    <g:id>${product.id}</g:id>
-    <g:store_code>${STORE_CODE}</g:store_code>
-    <g:quantity>100</g:quantity>
-    <g:price>${lowestPrice.toFixed(2)} INR</g:price>
-    <g:availability>in_stock</g:availability>
-    <g:sale_price_effective_date>${new Date().toISOString().split("T")[0]}/${
-					new Date(Date.now() + 365 * 24 * 60 * 60 * 1000)
-						.toISOString()
-						.split("T")[0]
-				}</g:sale_price_effective_date>
-  </entry>`;
+				return `${STORE_CODE}\t${product.id}\t100\t${lowestPrice.toFixed(
+					2
+				)} INR\tin_stock`;
 			})
 			.join("\n");
 
-		const inventoryFeed = `<?xml version="1.0" encoding="UTF-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom" xmlns:g="http://base.google.com/ns/1.0">
-  <title>PREMPUSHP FOODS - Local Inventory Feed</title>
-  <link rel="self" href="${baseUrl}/api/inventory-feed"/>
-  <updated>${new Date().toISOString()}</updated>
-${inventoryItems}
-</feed>`;
+		const csvContent = csvHeader + csvRows;
 
-		return new NextResponse(inventoryFeed, {
+		return new NextResponse(csvContent, {
 			headers: {
-				"Content-Type": "application/xml",
+				"Content-Type": "text/tab-separated-values",
+				"Content-Disposition": "attachment; filename=inventory-feed.txt",
 				"Cache-Control": "public, max-age=3600, s-maxage=3600",
 			},
 		});
 	} catch (error) {
-		console.error("Error generating inventory feed:", error);
-		return new NextResponse(
-			'<?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom"><title>Error</title></feed>',
-			{
-				status: 500,
-				headers: { "Content-Type": "application/xml" },
-			}
-		);
+		console.error("Error generating CSV inventory feed:", error);
+		return new NextResponse("store_code\tid\tquantity\tprice\tavailability\n", {
+			status: 500,
+			headers: { "Content-Type": "text/tab-separated-values" },
+		});
 	}
 }
