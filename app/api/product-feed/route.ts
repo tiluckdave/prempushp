@@ -33,7 +33,7 @@ export async function GET() {
 					product.description ||
 					"";
 
-				const lowestPrice = Math.min(...product.sizes.map((s) => s.mrp));
+				const lowestPrice = Math.min(...(product.sizes || []).map((s) => s.mrp));
 				const productUrl = `${baseUrl}/products/${product.id}`;
 
 				// Get main image
