@@ -58,6 +58,7 @@ export async function GET() {
 ${additionalImages}
     <g:availability>in_stock</g:availability>
     <g:price>${lowestPrice.toFixed(2)} INR</g:price>
+    <g:quantity>100</g:quantity>
     <g:brand><![CDATA[PREMPUSHP FOODS]]></g:brand>
     <g:condition>new</g:condition>
     <g:product_type><![CDATA[${product.category}]]></g:product_type>
