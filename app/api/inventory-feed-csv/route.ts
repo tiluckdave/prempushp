@@ -1,12 +1,16 @@
 import { NextResponse } from "next/server";
 import { getAllProducts } from "../../services/firebase";
 
+// TODO: Update this with your actual Google Business Profile store code
+// Find it at: https://business.google.com/ → Select location → Info → Store code
+const STORE_CODE = "10577676847338729509"; // Change this to your actual store code
+
 export async function GET() {
 	try {
 		const products = await getAllProducts();
 
-		// Generate CSV header
-		const csvHeader = "id,quantity,price,availability\n";
+		// Generate CSV header with store_code
+		const csvHeader = "store_code,id,quantity,price,availability\n";
 
 		// Generate CSV rows
 		const csvRows = products
@@ -23,7 +27,9 @@ export async function GET() {
 					...(product.sizes || []).map((s) => s.mrp)
 				);
 
-				return `${product.id},100,${lowestPrice.toFixed(2)} INR,in_stock`;
+				return `${STORE_CODE},${product.id},100,${lowestPrice.toFixed(
+					2
+				)} INR,in_stock`;
 			})
 			.join("\n");
 
@@ -38,10 +44,9 @@ export async function GET() {
 		});
 	} catch (error) {
 		console.error("Error generating CSV inventory feed:", error);
-		return new NextResponse("id,quantity,price,availability\n", {
+		return new NextResponse("store_code,id,quantity,price,availability\n", {
 			status: 500,
 			headers: { "Content-Type": "text/csv" },
 		});
 	}
 }
-

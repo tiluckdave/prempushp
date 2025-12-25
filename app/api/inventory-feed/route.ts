@@ -3,6 +3,11 @@ import { getAllProducts } from "../../services/firebase";
 
 const baseUrl = "https://prempushp.in";
 
+// TODO: Update this with your actual Google Business Profile store code
+// Find it at: https://business.google.com/ → Select location → Info → Store code
+// Examples: "MAIN-STORE", "WAREHOUSE-01", "DELHI-01"
+const STORE_CODE = "10577676847338729509"; // Change this to your actual store code
+
 export async function GET() {
 	try {
 		const products = await getAllProducts();
@@ -25,6 +30,7 @@ export async function GET() {
 
 				return `  <entry>
     <g:id>${product.id}</g:id>
+    <g:store_code>${STORE_CODE}</g:store_code>
     <g:quantity>100</g:quantity>
     <g:price>${lowestPrice.toFixed(2)} INR</g:price>
     <g:availability>in_stock</g:availability>
