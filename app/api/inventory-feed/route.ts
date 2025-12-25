@@ -6,7 +6,7 @@ const baseUrl = "https://prempushp.in";
 // TODO: Update this with your actual Google Business Profile store code
 // Find it at: https://business.google.com/ → Select location → Info → Store code
 // Examples: "MAIN-STORE", "WAREHOUSE-01", "DELHI-01"
-const STORE_CODE = "10577676847338729509"; // Change this to your actual store code
+const STORE_CODE = "5614835281"; // ⚠️ Use text code from Business Profile, NOT the location ID number!
 
 export async function GET() {
 	try {
