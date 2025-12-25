@@ -75,6 +75,20 @@ export async function generateMetadata({
 				: ""
 		}. Free shipping available.`;
 
+		// Get all product images (cover + additional images)
+		const allProductImages = [
+			...(product.coverImage ? [product.coverImage] : []),
+			...(product.images || []),
+		].filter((img, index, arr) => arr.indexOf(img) === index); // Remove duplicates
+
+		// Create comprehensive Open Graph image tags
+		const ogImages = allProductImages.slice(0, 6).map((img, index) => ({
+			url: img,
+			width: index === 0 ? 1200 : 800,
+			height: index === 0 ? 630 : 600,
+			alt: `${product.name} - ${index === 0 ? "Main Product Image" : `Image ${index + 1}`}`,
+		}));
+
 		return {
 			title: seoTitle,
 			description: seoDescription,
@@ -88,27 +102,14 @@ export async function generateMetadata({
 				description: seoDescription,
 				type: "website",
 				url: productUrl,
-				images: [
-					{
-						url: mainImage,
-						width: 1200,
-						height: 630,
-						alt: `${product.name} - Premium Organic ${product.category}`,
-					},
-					...(product.images?.slice(0, 3).map((img, index) => ({
-						url: img,
-						width: 800,
-						height: 600,
-						alt: `${product.name} - Image ${index + 2}`,
-					})) || []),
-				],
+				images: ogImages,
 				siteName: "Prempushp - Premium Organic Food Products",
 			},
 			twitter: {
 				card: "summary_large_image",
 				title: seoTitle,
 				description: seoDescription,
-				images: [mainImage],
+				images: allProductImages.slice(0, 4),
 				creator: "@prempushp",
 			},
 			robots: {
@@ -126,6 +127,7 @@ export async function generateMetadata({
 				canonical: productUrl,
 			},
 			other: {
+				// Product specific meta tags for e-commerce and Google Merchant Center
 				"product:price:amount": productSEOData.price.toString(),
 				"product:price:currency": productSEOData.priceCurrency,
 				"product:availability": productSEOData.availability,
@@ -133,6 +135,35 @@ export async function generateMetadata({
 				"product:category": productSEOData.category,
 				"product:condition": "new",
 				"product:retailer_item_id": productSEOData.id,
+				// Additional images for Google to discover
+				...(allProductImages.length > 1
+					? allProductImages.reduce((acc, img, index) => {
+							acc[`og:image:${index}`] = img;
+							return acc;
+					  }, {} as Record<string, string>)
+					: {}),
+				// Size variants information
+				...(product.sizes && product.sizes.length > 0
+					? {
+							"product:size_variants": product.sizes
+								.map((s) => `${s.size} ${s.unit}`)
+								.join(", "),
+							"product:price_range": `₹${Math.min(
+								...product.sizes.map((s) => s.mrp)
+							)} - ₹${Math.max(...product.sizes.map((s) => s.mrp))}`,
+					  }
+					: {}),
+				// Ingredients for better categorization
+				...(product.ingredients
+					? { "product:ingredients": product.ingredients.join(", ") }
+					: {}),
+				// Dietary preferences
+				...(product.dietaryPreferences
+					? {
+							"product:dietary_preferences":
+								product.dietaryPreferences.join(", "),
+					  }
+					: {}),
 			},
 		};
 	} catch (error) {
@@ -202,9 +233,34 @@ export default async function ProductPage({
 		];
 		const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs, baseUrl);
 
+		// Generate Organization schema for Google Merchant Center
+		const organizationSchema = {
+			"@context": "https://schema.org",
+			"@type": "Organization",
+			name: "PREMPUSHP FOODS",
+			url: baseUrl,
+			logo: `${baseUrl}/logo.png`,
+			description:
+				"Premium natural food products - certified natural, sustainably sourced, and delivered fresh.",
+			contactPoint: {
+				"@type": "ContactPoint",
+				telephone: "+91-8275434017",
+				contactType: "customer service",
+				availableLanguage: ["English", "Hindi"],
+				areaServed: "IN",
+			},
+			address: {
+				"@type": "PostalAddress",
+				addressCountry: "IN",
+			},
+			sameAs: [
+				// Social media links when available
+			],
+		};
+
 		return (
 			<>
-				{/* Structured Data */}
+				{/* Structured Data for Google Merchant Center */}
 				<script
 					type='application/ld+json'
 					dangerouslySetInnerHTML={{
@@ -215,6 +271,12 @@ export default async function ProductPage({
 					type='application/ld+json'
 					dangerouslySetInnerHTML={{
 						__html: JSON.stringify(breadcrumbSchema),
+					}}
+				/>
+				<script
+					type='application/ld+json'
+					dangerouslySetInnerHTML={{
+						__html: JSON.stringify(organizationSchema),
 					}}
 				/>
 

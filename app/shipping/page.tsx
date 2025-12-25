@@ -48,7 +48,15 @@ export default function ShippingPage() {
 									Free
 								</div>
 								<div className='text-gray-600 text-sm sm:text-base'>
-									Shipping ₹1000+
+									Shipping ₹599+
+								</div>
+							</div>
+							<div className='text-center bg-white/60 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-lg'>
+								<div className='text-2xl sm:text-3xl md:text-4xl font-bold text-[#1B4D2A] mb-2'>
+									₹99
+								</div>
+								<div className='text-gray-600 text-sm sm:text-base'>
+									Minimum Order
 								</div>
 							</div>
 							<div className='text-center bg-white/60 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-lg'>
@@ -57,14 +65,6 @@ export default function ShippingPage() {
 								</div>
 								<div className='text-gray-600 text-sm sm:text-base'>
 									Business Days
-								</div>
-							</div>
-							<div className='text-center bg-white/60 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-lg'>
-								<div className='text-2xl sm:text-3xl md:text-4xl font-bold text-[#1B4D2A] mb-2'>
-									100%
-								</div>
-								<div className='text-gray-600 text-sm sm:text-base'>
-									Secure Packaging
 								</div>
 							</div>
 						</div>
@@ -79,8 +79,8 @@ export default function ShippingPage() {
 						{/* Introduction */}
 						<div className='bg-white rounded-2xl shadow-xl border border-gray-100 p-6 sm:p-8 md:p-10'>
 							<p className='text-gray-700 text-base sm:text-lg leading-relaxed'>
-								At PREMPUSHP FOODS, we strive to deliver your natural products as
-								quickly and efficiently as possible. We understand the
+								At PREMPUSHP FOODS, we strive to deliver your natural products
+								as quickly and efficiently as possible. We understand the
 								importance of fresh, quality products reaching you in perfect
 								condition, which is why we've partnered with trusted logistics
 								providers across India.
@@ -138,7 +138,7 @@ export default function ShippingPage() {
 									<div className='space-y-4 text-gray-700 text-base sm:text-lg leading-relaxed'>
 										<p>
 											We offer competitive shipping rates with free shipping on
-											larger orders:
+											orders above ₹599:
 										</p>
 										<div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-6'>
 											<div className='bg-gradient-to-br from-[#FDB913]/10 to-[#FDB913]/5 rounded-xl p-6 border border-[#FDB913]/20'>
@@ -146,7 +146,7 @@ export default function ShippingPage() {
 													Free Shipping
 												</div>
 												<div className='text-gray-700'>
-													Orders ₹1000 and above
+													Orders ₹599 and above
 												</div>
 												<div className='text-sm text-gray-600 mt-2'>
 													Available across India
@@ -156,13 +156,19 @@ export default function ShippingPage() {
 												<div className='text-xl font-bold text-[#1B4D2A] mb-2'>
 													Standard Shipping
 												</div>
-												<div className='text-gray-700'>₹50 minimum rate</div>
+												<div className='text-gray-700'>₹80 flat rate</div>
 												<div className='text-sm text-gray-600 mt-2'>
-													Vary as per location and quantity
+													For orders below ₹599
 												</div>
 											</div>
 										</div>
-										<div className='mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200'>
+										<div className='mt-6 p-4 bg-amber-50 rounded-lg border border-amber-200'>
+											<p className='text-amber-900 text-sm'>
+												<strong>Minimum Order Value:</strong> ₹99 (Minimum order
+												value of ₹99 is required for all orders)
+											</p>
+										</div>
+										<div className='mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200'>
 											<p className='text-blue-800 text-sm'>
 												<strong>Note:</strong> Express shipping and same-day
 												delivery options are available in select metro cities.
@@ -320,6 +326,72 @@ export default function ShippingPage() {
 													international@prempushp.com
 												</a>{" "}
 												to be notified when this service becomes available.
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						{/* Return & Exchange Policy */}
+						<div className='bg-white rounded-2xl shadow-xl border border-gray-100 p-6 sm:p-8 md:p-10'>
+							<div className='flex items-start gap-6'>
+								<div className='w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center shadow-lg flex-shrink-0'>
+									<AlertCircle className='w-6 h-6 sm:w-8 sm:h-8 text-white' />
+								</div>
+								<div className='flex-1'>
+									<h2
+										className={`${playfair.className} text-2xl sm:text-3xl font-bold text-[#1B4D2A] mb-4 sm:mb-6`}
+									>
+										Return & Exchange Policy
+									</h2>
+									<div className='space-y-4 text-gray-700 text-base sm:text-lg leading-relaxed'>
+										<div className='bg-red-50 rounded-xl p-6 border-2 border-red-200'>
+											<p className='text-red-900 font-bold text-xl mb-3'>
+												⚠️ No Return, No Exchange
+											</p>
+											<p className='text-red-800'>
+												Due to the nature of food products and hygiene concerns,
+												we maintain a strict{" "}
+												<strong>NO RETURN and NO EXCHANGE</strong> policy for
+												all orders. Once an order is placed and dispatched, it
+												cannot be returned or exchanged.
+											</p>
+										</div>
+
+										<div className='bg-amber-50 rounded-xl p-6 border border-amber-200 mt-4'>
+											<h3 className='font-bold text-amber-900 mb-3'>
+												⚡ Important: Please verify before ordering
+											</h3>
+											<ul className='list-disc pl-6 space-y-2 text-amber-900'>
+												<li>Double-check product details and quantities</li>
+												<li>Verify your delivery address carefully</li>
+												<li>Ensure contact information is correct</li>
+												<li>Review your order before confirming payment</li>
+											</ul>
+										</div>
+
+										<div className='bg-blue-50 rounded-xl p-6 border border-blue-200 mt-4'>
+											<h3 className='font-bold text-blue-900 mb-3'>
+												📦 Damaged or Defective Products
+											</h3>
+											<p className='text-blue-800 mb-3'>
+												In case you receive a damaged, defective, or wrong
+												product:
+											</p>
+											<ul className='list-disc pl-6 space-y-2 text-blue-800'>
+												<li>Contact us within 24 hours of delivery</li>
+												<li>Provide photos/videos of the damaged product</li>
+												<li>Keep the original packaging intact</li>
+												<li>
+													We will arrange for a replacement or refund after
+													verification
+												</li>
+											</ul>
+											<p className='text-blue-700 text-sm mt-4'>
+												<strong>Note:</strong> This exception applies only to
+												manufacturing defects or damage during shipping, not for
+												change of mind.
 											</p>
 										</div>
 									</div>

@@ -371,8 +371,6 @@ export default function ProductPageClient({
 							</section>
 						)}
 
-						
-
 						{/* Storage Instructions */}
 						{product.storageInstructions &&
 							product.storageInstructions.trim() && (
